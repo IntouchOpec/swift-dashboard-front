@@ -1,26 +1,27 @@
 import React from 'react'
-import Select from 'react-select'
-
-const customStyles = {
-    control: (base, state) => ({
-        ...base,
-        borderRadius: '0px',
-    }),
-    valueContainer: (base, state) => ({...base, margin: '4px'})
-}
+import { FormGroup, Input, Label, FormFeedback } from 'reactstrap';
 
 const SelectField = props => {
-    const { value, onChange ,name ,options ,placeholder } = props
+    let message
+    const {options, name, className, label, errors} = props
+    if (errors) {
+        if (errors[name]) {
+            message = errors[name].message
+        }
+    }
+    
     return (
-        <Select 
-            {...props}
-            onChange={onChange}
-            value={value}
-            styles={customStyles}
-            name={name}
-            options={options}
-            placeholder={placeholder}
-        />
+        <FormGroup className='p-0 m-0'>
+            {label && <div><Label for={`${name}-${label}`}>{label}</Label></div>}   
+            <Input className={className} invalid={message && true} type='select' name={name} id={name} {...props} invalid={message && true}>
+                <option disabled>{name}</option>
+                <option></option>
+                {options.map((i) => 
+                    <option key={`${i.id}_${i.name}`} value={i.id}>{i.name}</option>
+                )}
+            </Input>
+            {message && <FormFeedback>{message}</FormFeedback>}
+      </FormGroup>
     )
 }
 

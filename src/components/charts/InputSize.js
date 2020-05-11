@@ -5,10 +5,12 @@ const InputSize = props => {
     
     const setWidth = e => {
         setwidth(parseInt(e.target.value, 10))
+        window.localStorage.setItem(`${name}_width`, e.target.value)        
     }
 
     const setHeight = e => {
         setheight(parseInt(e.target.value, 10))
+        window.localStorage.setItem(`${name}_height`, e.target.value)        
     }
 
     return (
