@@ -5,6 +5,7 @@
     ],
     "plugins": [
           "@babel/plugin-proposal-class-properties",
+        //   "react-hot-loader/babel",
           ["inline-react-svg", {
             "svgo": {
                 "plugins": [{

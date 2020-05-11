@@ -1,4 +1,4 @@
-import React, { useReducer, useState } from 'react'
+import React, { useReducer, useState, useEffect } from 'react'
 import { initialStateAuth, authReducer } from 'reducers/auth'
 import {AuthContext} from './index'
 import { AUTH_AUTHENTICATED, AUTH_UNAUTHENTICATED } from 'utils'
@@ -14,7 +14,7 @@ const config = {
 
 function AuthProvider(props) {
   const [state, dispatch] = useReducer(authReducer, initialStateAuth)
-  useState(() => {
+  useEffect(() => {
     const refreshToken = localStorage.getItem('refreshToken')
     const token = JSON.parse(refreshToken)
     const user = JSON.parse(localStorage.getItem('user'))

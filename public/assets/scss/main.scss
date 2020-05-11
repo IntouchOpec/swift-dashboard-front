@@ -1,4 +1,4 @@
-// $bg-login-page-img: url('/images/bg.jpg');
+@import "~react-datepicker/dist/react-datepicker.css";
 
 .App {
   display: flex;
@@ -645,4 +645,8 @@ select {
   .box-search-with-icon {
     border-radius: 0px;
   }
+}
+
+.weather-font {
+  font-size: 13px;
 }

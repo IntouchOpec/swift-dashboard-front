@@ -74,6 +74,7 @@ module.exports = {
   plugins: [
     new webpack.DefinePlugin({
       // ...JSON.stringify(process.env),
+      "process.env.google_map_key": JSON.stringify(process.env.google_map_key),
       "process.env.client_id": JSON.stringify(process.env.client_id),
       "process.env.client_secret": JSON.stringify(process.env.client_secret),
       "process.env.HOST": JSON.stringify(process.env.HOST),

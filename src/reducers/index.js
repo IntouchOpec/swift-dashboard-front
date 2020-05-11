@@ -1,7 +1,7 @@
 import authReducer from 'reducers/auth'
 
 export const initialStateAuth = {
-    auth: true,
+    auth: false,
     profile: {},
     projects: [],
     projectDetail: {}

@@ -16,13 +16,13 @@ const menus = [
     { path: '/contract_mgn',name: 'Contract Mgn.' },
     { path: '/change_mgn',name: 'Change Mgn.' },
     { path: '/user',name: 'user' },
-    { path: '/chart',name: 'chart' },
+    { path: '/charts',name: 'chart' },
     { path: '/setting',name: 'Setting' },
 ]
 
 const ListMenu = props => {
     return menus.map(menu => {
-        return (<NavItem className='my-2'>
+        return (<NavItem key={menu.path} className='my-2'>
                     <NavLink tag={Link} to={menu.path}>
                         {menu.name}
                     </NavLink>

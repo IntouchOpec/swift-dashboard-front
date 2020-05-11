@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { refeshTokenURL, API_URL } from './endpoint'
+import { refeshTokenURL, apiURL } from './endpoint'
 // import { store } from './store'
 import qs from 'querystring'
 import {AuthContext} from 'providers'
@@ -50,7 +50,7 @@ const doErrorResponse = (err) => {
 }
 
 const baseConfig = {
-    baseURL: API_URL
+    baseURL: apiURL
 }
 const config = {
     headers: {

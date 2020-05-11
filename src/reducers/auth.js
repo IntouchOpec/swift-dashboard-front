@@ -18,7 +18,7 @@ export const authReducer = (state, action) => {
                 ...state,...action.payload, auth: true,loading: false
             }
         case AUTH_UNAUTHENTICATED:
-            return {...initialStateAuth,loading: false}
+            return {...initialStateAuth,loading: false, auth: false,}
     
         default:
             return state

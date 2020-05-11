@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { HouseFill, GearFill, BellFill, Justify } from 'react-bootstrap-icons'
 import { AuthContext }  from 'providers'
 import { Link } from 'react-router-dom'
+import { AUTH_UNAUTHENTICATED } from 'utils'
 import { Navbar, NavbarBrand, Nav, NavItem, Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap'
 import { useHistory } from 'react-router-dom'
 
