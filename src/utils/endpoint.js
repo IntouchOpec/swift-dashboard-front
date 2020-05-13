@@ -12,9 +12,11 @@ export const usersDetailURL = `${endpoint}users/:id/`
 
 export const reportsURL = `${endpoint}reports/`
 export const reportsDetailURL = `${endpoint}reports/:id/`
+export const reportsSearchDetailURL = `${endpoint}reports-search/`
 
 export const weathersURL = `${endpoint}weathers/`
 
+export const groupsURL = `${endpoint}groups/`
 
 export const settingURL = `${endpoint}settings/`
 

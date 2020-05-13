@@ -11,7 +11,7 @@ export const BaseDatePicker = (props) => {
     }
     return (
     <FormGroup>
-        {label && <div><Label for={`${name}-${label}`}>{label}</Label></div>}
+        {label && <div><Label htmlFor={`${name}-${label}`}>{label}</Label></div>}
         <DatePicker
             autocomplete='off'
             className={`form-control ${message ? 'border border-danger' : ''}`}
@@ -29,12 +29,18 @@ export const BaseDatePicker = (props) => {
 )}
 
 export const DatePickerField = props => {
-    const { name, setValue, register, error, label, rules, value } = props
+    const { name, setValue, register, error, label, rules, value, setError } = props
     const [date, setDate] = useState()
 
     useEffect(() => {
-        register(name)
+        register(name, {required: 'Required'})
     }, [])
+
+    useEffect(() => {
+        if (date === undefined || date === null) {
+            // setError(name, 'required', 'Required')
+        }
+    }, [date, error]) 
 
     const onChange = date => {
         setValue(name, date)

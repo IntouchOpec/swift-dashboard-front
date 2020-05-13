@@ -28,8 +28,8 @@ function AuthProvider(props) {
             'client_secret': process.env.client_secret
         })
         , config).then(res => {
-          localStorage.setItem('user', JSON.stringify(res.data))
-          localStorage.setItem('refreshToken', JSON.stringify(res.data.token))
+          window.localStorage.setItem('user', JSON.stringify(res.data))
+          window.localStorage.setItem('refreshToken', JSON.stringify(res.data.token))
           dispatch({type: AUTH_AUTHENTICATED,payload: res.data})
         }).catch(err => {
           dispatch({ type: AUTH_UNAUTHENTICATED })

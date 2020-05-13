@@ -23,6 +23,5 @@ module.exports = (storybookBaseConfig, configType) => {
   //   storybookBaseConfig.resolve.modules = [];
   // }
   storybookBaseConfig.resolve.modules.push(path.resolve(__dirname, "../../src"));
-  // console.log(storybookBaseConfig.resolve.modules);
   return storybookBaseConfig;
 };

@@ -3,17 +3,17 @@ import { FormGroup, Input, Label, FormFeedback } from 'reactstrap';
 
 const SelectField = props => {
     let message
-    const {options, name, className, label, errors} = props
-    if (errors) {
-        if (errors[name]) {
-            message = errors[name].message
+    const {options, name, className, label, error} = props
+    if (error) {
+        if (error) {
+            message = error.message
         }
     }
     
     return (
         <FormGroup className='p-0 m-0'>
-            {label && <div><Label for={`${name}-${label}`}>{label}</Label></div>}   
-            <Input className={className} invalid={message && true} type='select' name={name} id={name} {...props} invalid={message && true}>
+            {label && <div><Label htmlFor={`${name}-${label}`}>{label}</Label></div>}   
+            <Input className={className} type='select' name={name} id={name} {...props} invalid={message && true}>
                 <option disabled>{name}</option>
                 <option></option>
                 {options.map((i) => 

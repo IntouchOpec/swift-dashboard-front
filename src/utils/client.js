@@ -27,7 +27,7 @@ const getClientRefreshTokenRequest = () => {
             })
             , config)
         clientRefreshTokenRequest.then(resetClientRefreshTokenRequest)
-        .catch(err => { console.log(AuthContext) })
+        .catch(err => {  })
     }
     return clientRefreshTokenRequest
 }

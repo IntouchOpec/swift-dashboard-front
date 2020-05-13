@@ -6,7 +6,14 @@ import { weathersURL, settingURL } from 'utils/endpoint'
 import client from 'utils/client'
 import { getWeatherIcon } from 'utils/formats' 
 
-const sumMock = [{name: 'Permit', planValue: 80, actValue: 40},{name: 'Permit', planValue: 80, actValue: 40},{name: 'Permit', planValue: 80, actValue: 40}, {name: 'Permit', planValue: 80, actValue: 40}, {name: 'Permit', planValue: 80, actValue: 40}]
+const sumMock = [
+    {name: 'license & Permit', planValue: 100, actValue: 40},
+    {name: 'Engineering', planValue: 90, actValue: 40},
+    {name: 'Procuement', planValue: 56, actValue: 40}, 
+    {name: 'Delivery', planValue: 100, actValue: 40}, 
+    {name: 'Civil Work', planValue: 98, actValue: 40}
+]
+
 const OverviewPage = props => {
 
     const [weather, setWeather] = useState({})

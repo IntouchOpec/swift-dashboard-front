@@ -37,7 +37,7 @@ const TableBase = props => {
     useEffect(() => {
         client.get(`${url}?limit=${limit}&page=1`)
         .then(res => {
-            setPages(makePaginationList(row.count, limit))
+            setPages(makePaginationList(res.data.count, limit))
             setPage({value: 1, label: 'Page 1'})
             setRows(res.data.result)
             setLoading(false)
@@ -82,6 +82,7 @@ const TableBase = props => {
                 filterOptions={filterOptions} 
                 createPath={createPath} 
                 search={search} 
+                filter={filter}
                 page={page}
                 pages={pages}
                 setSearch={setSearch}
@@ -89,15 +90,15 @@ const TableBase = props => {
                 onClickFilter={onClickFilter}
                 onClickPage={onClickPage}
             />
-            <Table striped>
+            <Table responsive striped>
                 <thead>
                     <tr>
                         {keys.map(key => <th key={key}>{key}</th>)}
-                        <th />
+                        {/* <th /> */}
                     </tr>
                 </thead>
                 <tbody>
-                {loading ? 
+                {!loading ? 
                     rows.length === 0 && 
                     <tr><td colSpan={keys.length + 1}>ไม่มีรายการเอกสาร</td></tr>:
                     <LoadingTable countRow={18} colSpan={8}/>

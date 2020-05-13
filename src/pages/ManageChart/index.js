@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-// import SCurve from 'components/charts/SCurve'
 import { Link } from 'react-router-dom'
 import TableBase from 'components/tables/TableBase'
 import client from 'utils/client'
@@ -22,10 +21,10 @@ const filterOptions = [
 const RowRender = props => (
     <tr>
         <td>
-            <Link to={`/charts/${props.id}`}>
+            <Link to={`/chart/${props.id}`}>
                 <Button className='rounded-0 mr-1' outline color="secondary">view</Button>
             </Link>
-            <Link to={`/charts/${props.id}/edit`}>
+            <Link to={`/chart/${props.id}/edit`}>
                 <Button className='rounded-0' outline color="secondary">edit</Button>
             </Link>
         </td>

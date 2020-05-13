@@ -17,9 +17,15 @@ const ManpowerPlan = props => {
   const [data, setData] = useState(dataMock)
 
   const [bars, setBars] = useState([])
-  const { rows, setValue } = props
+  const { rows, setValue, mode } = props
+
   useEffect(() => {
-    onChange(rows)
+    if (mode === 'form') {
+      onChange(rows)
+    } else {
+      setBars(rows.bar)
+      setData(rows.data)
+    }
   }, [rows])
 
   const onChange = rows => {
@@ -74,13 +80,16 @@ const ManpowerPlan = props => {
     }
     setBars(barList)
     setData(dataList)
-    setValue('source', dataList)
+    setValue('source', { bar: barList, data: dataList })
   }
-  const { width, height, } = props
+  const { width, height, className } = props
+
+
 
   return (
     <div>
-      <ComposedChart width={width} height={height} data={data}>
+
+      <ComposedChart className={className} width={width} height={height} data={data}>
         <CartesianGrid strokeDasharray='3 3' />
         <XAxis dataKey='name' />
         <YAxis />

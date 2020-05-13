@@ -24,7 +24,7 @@ const TopBarHeader = props => {
                 <Nav className='mr-auto p' navbar />
                 <Dropdown isOpen={dropdownOpen} toggle={toggle}>
                 <DropdownToggle caret className='avatar'>
-                  <span className='text'>AB</span>
+                  <span className='text-uppercase'>{props.user.first_name[0]}{props.user.last_name[0]}</span>
                 </DropdownToggle>
                   <DropdownMenu right>
                     <DropdownItem onClick={onClickLogout}>logout</DropdownItem>

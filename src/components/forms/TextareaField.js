@@ -2,12 +2,16 @@ import React from 'react'
 import { FormFeedback, FormGroup, Input, Label } from 'reactstrap'
 
 const TextareaField = props => {
-    const { label, errors, register,name } = props
+    const { label, error, register, name } = props
+    let message
+    if (error) {
+        message = error.message
+    }
     return (
         <FormGroup >
-            {label && <Label for={`${name}-${label}`}>{label}</Label>}
+            {label && <Label htmlFor={`${name}-${label}`}>{label}</Label>}
             <Input name={name} innerRef={register} type='textarea' />
-            {errors[name] && <FormFeedback>{errors[name]}</FormFeedback>}
+            {message && <FormFeedback>{message}</FormFeedback>}
         </FormGroup>
     )
 }

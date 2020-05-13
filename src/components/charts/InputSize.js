@@ -1,16 +1,16 @@
 import React from 'react'
 
 const InputSize = props => {
-    const {width, height, setwidth, setheight} = props 
+    const {width, height, setwidth, setheight, name} = props 
     
     const setWidth = e => {
-        setwidth(parseInt(e.target.value, 10))
         window.localStorage.setItem(`${name}_width`, e.target.value)        
+        setwidth(parseInt(e.target.value, 10))
     }
 
     const setHeight = e => {
-        setheight(parseInt(e.target.value, 10))
         window.localStorage.setItem(`${name}_height`, e.target.value)        
+        setheight(parseInt(e.target.value, 10))
     }
 
     return (
@@ -24,7 +24,7 @@ const InputSize = props => {
                     min="0"
                     max="1800"
                 />
-                <label for="volume">width</label>
+                <label htmlFor="volume">width</label>
             </div>
 
             <div>
@@ -37,7 +37,7 @@ const InputSize = props => {
                     value={height}
                     step="100"
                 />
-                <label for="cowbell">height</label>
+                <label htmlFor="cowbell">height</label>
             </div>
       </>
     )

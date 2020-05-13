@@ -100,7 +100,7 @@ export const getWeatherIcon = (code, className, description) => {
 const REPORT_TYPE_S_CURVE = 0 
 const REPORT_TYPE_MANPOWERPLAN = 1
 
-const charts = {
+export const charts = {
     [REPORT_TYPE_S_CURVE]: 'S-Curve',
     [REPORT_TYPE_MANPOWERPLAN]: 'Manpower Plan'
 }

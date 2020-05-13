@@ -30,11 +30,13 @@ const CustomizedAxisTick = props => {
 }
 
 const SCurve = props => {
-  const { rows, setValue } = props
+  const { rows, setValue, mode } = props
   const [data, setData] = useState([])
 
   useEffect(() => {
-    onChagne(rows)
+    if (mode === 'form') {
+      onChagne(rows)
+    }
   }, [rows])
 
   const onChagne = rows => {
@@ -92,13 +94,14 @@ const SCurve = props => {
     setValue('source', displayData)
   }
 
-  const { width,height } = props
+  const { width,height, className } = props
   
   return (
     <LineChart
       width={width}
       height={height}
-      data={data}
+      className={className}
+      data={mode === 'form' ? data : rows}
       margin={{ top: 20, right: 30, left: 20, bottom: 10 }}
     >
       <XAxis dataKey='name' height={60} tick={<CustomizedAxisTick />} />
