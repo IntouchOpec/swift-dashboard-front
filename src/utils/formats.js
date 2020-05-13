@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import ThunderstormWithLightRainIcon from'../../public/icons/weather/5896934 - cloud moon rain sun weather.png'
 import DrizzleIcon from'../../public/icons/weather/5896966 - cloud moon rain sun weather.png'
 import LightRainIcon from'../../public/icons/weather/5896965 - cloud moon rain sun weather.png'
@@ -14,6 +14,7 @@ import FewCloudsIcon from'../../public/icons/weather/5896929 - cloud moon rain s
 import OvercastCloudsIcon from '../../public/icons/weather/5896931 - cloud moon rain sun weather.png' 
 import DefualtIcon from '../../public/icons/weather/5896975 - cloud moon rain sun weather.png'
 import moment from 'moment'
+import { Popover, PopoverHeader, PopoverBody } from 'reactstrap'
 
 const thunderstormWithLightRain	= 200
 const thunderstormWithRain = 201
@@ -65,35 +66,47 @@ const brokenClouds = 803
 const overcastClouds = 804
 const unknownPrecipitation = 900
 
-export const getWeatherIcon = (code, className, description) => {
-    if (showerRain== code || thunderstormWithLightRain== code || thunderstormWithRain== code || thunderstormWithHeavyRain== code || thunderstormWithLightDrizzle== code || thunderstormWithDrizzle== code || thunderstormWithHeavyDrizzle== code || thunderstormWithHail === code) {
-        return <img src={ThunderstormWithLightRainIcon} className={className} alt={description} />
+const PopoverDetail = ({description, datetime}) =>{
+    const [popoverOpen, setPopoverOpen] = useState(false);
+    console.log(datetime)
+    const toggle = () => setPopoverOpen(!popoverOpen);
+    return (
+        <Popover placement="img" isOpen={popoverOpen} target={`img-${datetime}`} toggle={toggle}>
+        <PopoverHeader>{description}</PopoverHeader>
+        {/* <PopoverBody>Sed posuere consectetur est at lobortis. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum.</PopoverBody> */}
+      </Popover>
+    )
+}
+
+export const getWeatherIcon = (code, className, description, datetime) => {
+    if (showerRain == code || thunderstormWithLightRain== code || thunderstormWithRain== code || thunderstormWithHeavyRain== code || thunderstormWithLightDrizzle== code || thunderstormWithDrizzle== code || thunderstormWithHeavyDrizzle== code || thunderstormWithHail === code) {
+        return <> <img id={`img-${datetime}`} src={ThunderstormWithLightRainIcon} className={className} alt={description} /> <PopoverDetail description={description} datetime={datetime} /> </>
     } else if (lightDrizzle== code || drizzle== code || heavyDrizzle === code) {
-        return <image src={DrizzleIcon} className={className} alt={description} />
+        return <> <img id={`img-${datetime}`} src={DrizzleIcon} className={className} alt={description} /> <PopoverDetail description={description} datetime={datetime} /> </>
     } else if (lightRain== code || moderateRain== code || freezingRain== code || lightShowerRain== code || heavyShowerRain === code) {
-        return <image src={LightRainIcon} className={className} alt={description} />
+        return <> <img id={`img-${datetime}`} src={LightRainIcon} className={className} alt={description} /> <PopoverDetail description={description} datetime={datetime} /> </>
     } else if (heavyRain== code || unknownPrecipitation === code) {
-        return <image src={HeavyRainIcon} className={className} alt={description} />
+        return <> <img id={`img-${datetime}`} src={HeavyRainIcon} className={className} alt={description} /> <PopoverDetail description={description} datetime={datetime} /> </>
     } else if (lightSnow== code || mixSnowRain === code) {
-        return <img src={LightSnowIcon} className={className}/>
+        return <> <img id={`img-${datetime}`} src={LightSnowIcon} className={className}/> </>
     } else if (snow === code) {
-        return <img src={SnowIcon} className={className} alt={description} />
+        return <> <img id={`img-${datetime}`} src={SnowIcon} className={className} alt={description} /> <PopoverDetail description={description} datetime={datetime} /> </>
     } else if (heavySnow== code || heavySnowShower== code || flurries === code) {
-        return <img src={FlurriesIcon} className={className} alt={description} />
+        return <> <img id={`img-${datetime}`} src={FlurriesIcon} className={className} alt={description} /> <PopoverDetail description={description} datetime={datetime} /> </>
     } else if (sleet== code || heavySleet== code || snowShower === code) {
-        return <img src={SleetIcon} className={className} alt={description} />
+        return <> <img id={`img-${datetime}`} src={SleetIcon} className={className} alt={description} /> <PopoverDetail description={description} datetime={datetime} /> </>
     } else if (mist== code || smoke== code || haze== code || fog== code || sandDust === code) {
-        return <img src={MistIcon} className={className} alt={description} />
+        return <> <img id={`img-${datetime}`} src={MistIcon} className={className} alt={description} /> <PopoverDetail description={description} datetime={datetime} /> </>
     } else if (freezingFog === code) {
-        return <img src={FreezingFogIcon} className={className} alt={description} />
+        return <> <img id={`img-${datetime}`} src={FreezingFogIcon} className={className} alt={description} /> <PopoverDetail description={description} datetime={datetime} /> </>
     } else if (clearSky === code) {
-        return <img src={ClearSkyIcon} className={className} alt={description} />
+        return <> <img id={`img-${datetime}`} src={ClearSkyIcon} className={className} alt={description} /> <PopoverDetail description={description} datetime={datetime} /> </>
     } else if (fewClouds== code || scatteredClouds== code || brokenClouds === code) {
-        return <img src={FewCloudsIcon} className={className} alt={description} />
+        return <> <img id={`img-${datetime}`} src={FewCloudsIcon} className={className} alt={description} /> <PopoverDetail description={description} datetime={datetime} /> </>
     } else if (overcastClouds === code) {
-        return <img src={OvercastCloudsIcon} className={className} alt={description} />
+        return <> <img id={`img-${datetime}`} src={OvercastCloudsIcon} className={className} alt={description} /> <PopoverDetail description={description} datetime={datetime} /> </>
     } else {
-        return <img src={DefualtIcon} className={className} alt={description} />
+        return <> <img id={`img-${datetime}`} src={DefualtIcon} className={className} alt={description} /> <PopoverDetail description={description} datetime={datetime} /> </>
     }
 }
 

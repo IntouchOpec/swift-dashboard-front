@@ -23,7 +23,6 @@ const menus = [
 
 const ListMenu = (props, user) => {
     const admin = user.role === 'admin'
-    console.log(admin)
     if (user.is_superuser || admin) {
         return menus.map(menu => {
             return (

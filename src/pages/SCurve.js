@@ -8,6 +8,7 @@ import DatePicker from 'react-datepicker'
 import moment from 'moment'
 import Select from 'react-select'
 import { dateFormat } from 'utils/formats'
+
 const SCurvePage = props => {
     const [date, setDate] = useState(new Date())
     const [data, setData] = useState({})
@@ -65,7 +66,7 @@ const SCurvePage = props => {
                     />
                 </div>
             </div>
-            <CardChart className='mt-3 card' rows={data.source} RenderChildren={SCurve} name='SCurve'/>
+            <CardChart className='mt-3 card' rows={data.source} RenderChildren={SCurve} name='SCurve' />
             <Card>
                 <Table striped>
                     <tbody>
@@ -77,7 +78,7 @@ const SCurvePage = props => {
                         </tr>
                         <tr>
                             <td>type</td>
-                            <td>{data.report_type === 0 ? 'S-Curve': 'Manpower Plan'}</td>
+                            <td>{data.report_type === 0 ? 'S-Curve' : 'Manpower Plan'}</td>
                             <td>dowload</td>
                             <td><a href="/images/myw3schoolsimage.jpg" download>{data.path}</a></td>
                         </tr>

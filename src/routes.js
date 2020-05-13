@@ -36,7 +36,6 @@ const Routes = props => {
     return (
         <Router>
             <AuthContext.Consumer>{context => {
-                console.log(context.auth)
                 if (context.auth.loading) {
                     return <Spinner color="primary" />
                 }

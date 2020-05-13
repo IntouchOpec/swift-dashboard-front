@@ -93,7 +93,7 @@ const WeatherCard = props => {
 const WeatherItem = props => (
     <div className='col-2'>
         <span>{moment(props.datetime).format('ddd')}</span>
-        {getWeatherIcon(props.weather.code, 'w-100', props.weather.description)}
+        {getWeatherIcon(props.weather.code, 'w-100', props.weather.description, moment(props.datetime).format('ddd'))}
         <span className='weather-font'>{props.low_temp} - {props.max_temp} C</span>
     </div>
 )

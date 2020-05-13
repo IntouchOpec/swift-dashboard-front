@@ -48,7 +48,8 @@ const SignIn = props => {
                 <div id='wrapper' className='login-container col-12 row p-0 m-0'>
                     <div className='left-pane col-12 col-lg-4 p-0 m-0'>
                         <div className='m-5 text-center pt-5'>
-                            <img className='' height='50px' src={logo_cm} />
+                            <h1>CMDASHBOARD</h1>
+                            {/* <img className='' height='50px' src={logo_cm} /> */}
                         </div>
                         <Card className='m-5'>
                             <div className='card-body'>   

@@ -16,7 +16,6 @@ const CardChart = props => {
             setWidth(parseInt(heightLocalStorage, 10))
         }
     }, [])
-    // console.log(props)
     return (
         <>
             {/* <Card> */}
