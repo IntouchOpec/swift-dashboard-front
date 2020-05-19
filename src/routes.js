@@ -12,6 +12,8 @@ import ChartDetailPage from 'pages/ManageChart/Detail'
 import TimeSheetPage from 'pages/Timesheet'
 import CreateTimeSheetPage from 'pages/Timesheet/Create'
 import TimeSheetDetailPage from 'pages/Timesheet/Detail'
+import JobPage from 'pages/Job'
+import CreateJobPage from 'pages/Job/Create'
 import UserDetailPage from 'pages/User/Detail'
 import ManageUserPage from 'pages/User'
 import CreateUserPage from 'pages/User/Create'
@@ -52,6 +54,8 @@ const Routes = props => {
                             <Route path='/chart/:id' component={ChartDetailPage} />
                             <Route path='/charts/create' component={CreateChartPage} />
                             <Route path='/charts' component={ManageChartPage} />
+                            <Route path='/jobs/create' component={CreateJobPage} />
+                            <Route path='/jobs' component={JobPage} />
                             <Route path='/user/:id' component={UserDetailPage} />
                             <Route path='/users/create' component={CreateUserPage} />
                             <Route path='/users' component={ManageUserPage} />

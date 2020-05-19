@@ -9,13 +9,12 @@ import SwitchButton from 'bootstrap-switch-button-react'
 
 const LIMIT = 10
 
-const KEYS = [ 'Staff', 'Job', 'Start Date', 'End Date', 'Worktime', 'Create By', 'Description']
+const KEYS = ['Job Code','Job Name', 'Create By','-']
 
 const filterOptions = [
-    { label: 'document_number', value: 'report_type' },
-    { label: 'Staff', value: 'title' },
-    { label: 'Job', value: 'status' },
-    { label: 'Create By', value: 'user__first_name' },
+    {label: 'Job Code', value: 'job_code'},
+    {label: 'Job Name', value: 'job_name'},
+    {label: 'Create By', value: 'user'},
 ]
 
 const RowRender = props => {
@@ -24,29 +23,16 @@ const RowRender = props => {
     useEffect(() => {
         setActive(props.active)
     }, [props.id])
-
-    const onActiveHanlder = () => {
-        client.patch(`${reportsDetailURL.replace(':id', props.id)}`, { active: !active })
-            .then(res => {
-                setActive(state => !state)
-            }).catch(err => {
-                setActive(state => state)
-            })
-    }
     return (
-        <tr>
-            <td>Staff Name</td>
-            <td>Job Name</td>
-            <td>{dateFormat(props.created_at)}</td>
-            <td>{dateFormat(props.updated_at)}</td>
-            <td>xx Day</td>
-            <td>{props.user}</td>
-            <td>......</td>
-        </tr>
-    )
-}
+    <tr>
+        <td>Job-xxx</td>
+        <td>Job Name</td>
+        <td>{props.user}</td>
+        <td>Delete</td>
+    </tr>
+)}
 
-const TimeSheetPage = props => {
+const JobPage = props => {
 
     return (
         <div className='mt-4'>
@@ -58,10 +44,10 @@ const TimeSheetPage = props => {
                 </div>
             </div>
             <hr />
-            <TableBase
+            <TableBase 
                 keys={KEYS}
                 RowRender={RowRender}
-                createPath={'/timesheet/create'}
+                createPath={'/jobs/create'}
                 filterOptions={filterOptions}
                 limit={LIMIT}
                 url={reportsURL}
@@ -70,4 +56,4 @@ const TimeSheetPage = props => {
     )
 }
 
-export default TimeSheetPage
+export default JobPage

@@ -18,6 +18,7 @@ const menus = [
     // { path: '/contract_mgn',name: 'Contract Mgn.' },
     // { path: '/change_mgn',name: 'Change Mgn.' },
     { admin: true, path: '/users', name: 'Users' },
+    { admin: true, path: '/jobs', name: 'Job' },
     { admin: true, path: '/charts', name: 'Charts' },
     // { path: '/setting', name: 'Setting' },
 ]
