@@ -4,6 +4,7 @@ import client from 'utils/client'
 import { timeSheetURL, usersURL, jobsURL } from 'utils/endpoint'
 import { useHistory } from 'react-router-dom'
 import { Card } from 'reactstrap'
+import Swal from 'sweetalert2'
 
 const CreateTimeSheetPage = props => {
     const [errors, setErrors] = useState({})
@@ -14,16 +15,17 @@ const CreateTimeSheetPage = props => {
     const submit = data => {
         client.post(timeSheetURL)
             .then(res => {
-                history.push('/timesheet')
+                Swal.fire('Created !', 'Success .', 'success')
+                    .then(result => history.push('/timesheet'))
             })
             .catch(err => {
                 setErrors(err)
             })
     }
 
-    useEffect(( ) => {
+    useEffect(() => {
         client.get(usersURL).then(res => {
-            setUsers(res.data.result.map(user => ({...user, value: user.id, label: user.full_name})))
+            setUsers(res.data.result.map(user => ({ ...user, value: user.id, label: user.full_name })))
         })
         client.get(jobsURL).then(res => {
             setJobs(res.data)
@@ -32,7 +34,7 @@ const CreateTimeSheetPage = props => {
 
     return <div className='mt-3'>
         <h3>New Time Sheet</h3>
-        <hr/>
+        <hr />
         <Card>
             <h4 className='my-4 ml-2'>List</h4>
             <TimeSheetForm defaultValues={{}} jobs={jobs} users={users} submit={submit} errors={errors} />
