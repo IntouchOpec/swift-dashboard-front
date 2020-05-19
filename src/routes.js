@@ -9,6 +9,9 @@ import OverviewPage from 'pages/Overview'
 import ManageChartPage from 'pages/ManageChart'
 import CreateChartPage from 'pages/ManageChart/Create'
 import ChartDetailPage from 'pages/ManageChart/Detail'
+import TimeSheetPage from 'pages/Timesheet'
+import CreateTimeSheetPage from 'pages/Timesheet/Create'
+import TimeSheetDetailPage from 'pages/Timesheet/Detail'
 import UserDetailPage from 'pages/User/Detail'
 import ManageUserPage from 'pages/User'
 import CreateUserPage from 'pages/User/Create'
@@ -43,6 +46,9 @@ const Routes = props => {
                     return <Layout user={context.auth}>
                         <Switch>
                             {/* {loginRoutes()} */}
+                            <Route path='/timesheet/:id' component={TimeSheetDetailPage} />
+                            <Route path='/timesheet/create' component={CreateTimeSheetPage} />
+                            <Route path='/timesheet' component={TimeSheetPage} />
                             <Route path='/chart/:id' component={ChartDetailPage} />
                             <Route path='/charts/create' component={CreateChartPage} />
                             <Route path='/charts' component={ManageChartPage} />
