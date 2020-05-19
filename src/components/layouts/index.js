@@ -1,6 +1,6 @@
 import React,{ useState, useEffect } from 'react'
 import TopBarHeader from 'components/layouts/TopBarHeader'
-import SideBar from 'components/layouts/sidebar' 
+import SideBar from 'components/layouts/Sidebar' 
 import classNames from 'classnames'
 import { Container, Card, Table, Col } from 'reactstrap'
 
