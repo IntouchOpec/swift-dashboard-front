@@ -28,7 +28,7 @@ const RowRender = props => {
         <td>Job-xxx</td>
         <td>Job Name</td>
         <td>{props.user}</td>
-        <td>Delete</td>
+        <td><Button color="danger">Delete</Button></td>
     </tr>
 )}
 
@@ -39,7 +39,7 @@ const JobPage = props => {
             <div className='row justify-content-between'>
                 <div className='d-flex'>
                     <div>
-                        <h2 className='h3 col-2'>Timesheet</h2>
+                        <h2 className='h3 col-2'>Jobs</h2>
                     </div>
                 </div>
             </div>

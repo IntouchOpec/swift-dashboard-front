@@ -15,13 +15,13 @@ const UserDetailPage = props => {
                 setData(res.data)
             }).catch(err => {
 
-            })
+            })  
     } , [])
     const { id } = useParams()
     return (
         <div className='mt-4'>
             <div className='row justify-content-between'>
-                <h2 className='h3'>Create User</h2>
+                <h2 className='h3'>Detail User</h2>
                 <Link to='/users'><Button className=''><ChevronDoubleLeft/> กลับ </Button></Link>                    
             </div>
             <hr />
@@ -51,6 +51,10 @@ const UserDetailPage = props => {
                             <td>{dateFormat(data.updated_at)}</td>
                             <td>last_login</td>
                             <td>{data.last_login ? dateFormat(data.last_login) : '-'}</td>
+                        </tr>
+                        <tr>
+                            <td>Export</td>
+                            <td><Button color="warning">Export</Button></td>
                         </tr>
                         {/* <tr> */}
                             {/* <td>type</td>
