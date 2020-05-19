@@ -18,26 +18,26 @@ const InputSize = props => {
             <div>
                 <input
                     onChange={setWidth}
-                    type="range"
-                    name="volume"
+                    type='range'
+                    name='volume'
                     value={width}
-                    min="0"
-                    max="1800"
+                    min='0'
+                    max='1800'
                 />
-                <label htmlFor="volume">width</label>
+                <label htmlFor='volume'>width</label>
             </div>
 
             <div>
                 <input
                     onChange={setHeight}
-                    type="range"
-                    name="cowbell"
-                    min="0"
-                    max="1000"
+                    type='range'
+                    name='cowbell'
+                    min='0'
+                    max='1000'
                     value={height}
-                    step="100"
+                    step='100'
                 />
-                <label htmlFor="cowbell">height</label>
+                <label htmlFor='cowbell'>height</label>
             </div>
       </>
     )
