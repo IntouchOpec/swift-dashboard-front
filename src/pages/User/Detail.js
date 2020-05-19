@@ -54,7 +54,7 @@ const UserDetailPage = props => {
                         </tr>
                         <tr>
                             <td>Export</td>
-                            <td><Button color="warning">Export</Button></td>
+                            <td colSpan='3'><Link to={`/users/export/${id}`}><Button color="warning">Export</Button></Link></td>
                         </tr>
                         {/* <tr> */}
                             {/* <td>type</td>
