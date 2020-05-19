@@ -19,34 +19,34 @@ const Search = props => {
     } = props
     return (
         <div className='row m-0 p-0'>
-            <div className="col-md-3 col-sm-3 mt-2">
-                <div className="box-search-with-icon">
+            <div className='col-md-3 col-sm-3 mt-2'>
+                <div className='box-search-with-icon'>
                     <input 
                         onChange={e => setSearch(e.target.value)} 
                         onKeyDown={(e) => e.key === 'Enter' && searchHandler()} value={search} 
-                        placeholder="Search" className="input-search form-control"
+                        placeholder='Search' className='input-search form-control'
                     />
-                    <SearchIcon className="icon-search"/>
+                    <SearchIcon className='icon-search'/>
                 </div>
             </div>
-            <div className="col-md-2 col-sm-2 mt-2">
+            <div className='col-md-2 col-sm-2 mt-2'>
                 <SelectReact 
                     isClearable
                     name=''
                     options={filterOptions}
                     onChange={onClickFilter}
                     value={filter}
-                    placeholder="Filter"
+                    placeholder='Filter'
                 />
             </div>
-            <div className="col-md-2 col-sm-2 mt-2">
+            <div className='col-md-2 col-sm-2 mt-2'>
                 <SelectReact 
                     isClearable
                     name='page'
                     options={pages}
                     onChange={onClickPage}
                     value={page}
-                    placeholder="page"
+                    placeholder='page'
                 />
             </div>
             <div className='col-2'/>
@@ -57,7 +57,7 @@ const Search = props => {
                     options={[]}
                     onChange={() => {}}
                     value={{}}
-                    placeholder="Filter"
+                    placeholder='Filter'
                 />
             </div>
             <div className='col-md-1 col-sm-1 mt-2 align-items-end text-right'>

@@ -30,31 +30,31 @@ const UserFrom = props => {
             <div className='col-12 m-0 p-0'>
                 <div className='d-flex'>
                     <div className='col-6'>
-                        <InputField type='text' label='ชื่อ' name='first_name' error={errors['first_name']} register={register({ required: 'Required' })} />
+                        <InputField className='' type='text' label='ชื่อ' name='first_name' error={errors['first_name']} register={register({ required: 'Required' })} />
                     </div>
                     <div className='col-6'>
-                        <InputField type='text' label='นามสกุล' name='last_name' error={errors['last_name']} register={register({ required: 'Required' })} />
-                    </div>
-                </div>
-                <div className='d-flex'>
-                    <div className='col-6'>
-                        <InputField type='email' label='อีเมล์ ลอกอิน' name='email' error={errors['email']} register={register({ email: 'user with this email address already exists.', required: 'Required' })} />
-                    </div>
-                    <div className='col-6'>
-                        <InputField type='email' label='ที่อยู่อีเมล' name='email_address' error={errors['email_address']} register={register({ required: 'Required' })} />
+                        <InputField className='' type='text' label='นามสกุล' name='last_name' error={errors['last_name']} register={register({ required: 'Required' })} />
                     </div>
                 </div>
                 <div className='d-flex'>
                     <div className='col-6'>
-                        <InputField type='text' label='ผู้ใช้' name='username' error={errors['username']} register={register({ required: 'Required' })} />
+                        <InputField className='' type='email' label='อีเมล์ ลอกอิน' name='email' error={errors['email']} register={register({ email: 'user with this email address already exists.', required: 'Required' })} />
+                    </div>
+                    <div className='col-6'>
+                        <InputField className='' type='email' label='ที่อยู่อีเมล' name='email_address' error={errors['email_address']} register={register({ required: 'Required' })} />
+                    </div>
+                </div>
+                <div className='d-flex'>
+                    <div className='col-6'>
+                        <InputField className='' type='text' label='ผู้ใช้' name='username' error={errors['username']} register={register({ required: 'Required' })} />
                     </div>
                     {!props.password && <div className='col-6'>
-                        <InputField type='password' label='รหัสผ่าน' name='password' error={errors['password']} register={register({ required: 'Required' })} />
+                        <InputField className='' type='password' label='รหัสผ่าน' name='password' error={errors['password']} register={register({ required: 'Required' })} />
                     </div>}
                 </div>
                 <div className='d-flex'>
                     <div className='col-6'>
-                        <InputField type='text' label='ตำแหน่ง' name='position' error={errors['position']} register={register({ required: 'Required' })} />
+                        <InputField className='' type='text' label='ตำแหน่ง' name='position' error={errors['position']} register={register({ required: 'Required' })} />
                     </div>
                     <div className='col-6'>
                         <SelectField options={groups} label='ระดับผู้ใช้' name='group' error={errors['group']} innerRef={register({ required: 'Required', })} />

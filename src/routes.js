@@ -48,8 +48,8 @@ const Routes = props => {
                     return <Layout user={context.auth}>
                         <Switch>
                             {/* {loginRoutes()} */}
-                            <Route path='/timesheet/:id' component={TimeSheetDetailPage} />
                             <Route path='/timesheet/create' component={CreateTimeSheetPage} />
+                            <Route path='/timesheet/:id' component={TimeSheetDetailPage} />
                             <Route path='/timesheet' component={TimeSheetPage} />
                             <Route path='/chart/:id' component={ChartDetailPage} />
                             <Route path='/charts/create' component={CreateChartPage} />
