@@ -31,10 +31,22 @@ const monthsOption = [
     { label: 'Dec', value: '12' },
 ]
 
+const FakeData = [
+    {code: '01.001', name: 'Mobilization Machine'},
+    {code: '02.001', name: 'Document Control'},
+    {code: '03.001', name: 'Piling Work'},
+    {code: '03.002', name: 'Footing Work'},
+    {code: '03.003', name: 'Column Work'},
+    {code: '04.001', name: 'Fire Alarm'},
+    {code: '04.002', name: 'Sanitary Work'},
+    {code: '04.003', name: 'Lighting'},
+    {code: '04.004', name: 'Earthing'},
+]
+
 const UserExportPage = props => {
     const [data, setData] = useState({})
     const [yearfilter, setYearFilter] = useState(yearsOption[0])
-    const [monthfilter, setMonthFilter] = useState(monthsOption[0])
+    const [monthfilter, setMonthFilter] = useState(monthsOption[4])
     useEffect(() => {
         client.get(usersDetailURL.replace(':id', id))
             .then(res => {
@@ -89,65 +101,65 @@ const UserExportPage = props => {
                     <Table bordered className='p-4'>
                         <thead>
                             <tr>
-                                <th>Staff Name</th>
-                                <th>Month</th>
-                                <th>Total Assigned</th>
+                                <th>Staff Name : {data.full_name}</th>
+                                <th>Month : {yearfilter.value}</th>
+                                <th>Total Assigned : 2</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <th colSpan='3' align='center'>Job Name</th>
+                                <th colSpan='3' align='center'>Job Name : {FakeData[0].name}</th>
                             </tr>
                         </tbody>
                         <thead>
                             <tr>
                                 <th align='center'>Date</th>
-                                <th  colSpan='2' align='center'>Workdays</th>
+                                <th colSpan='2' align='center'>Workdays</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td align='center'>xx/xx/xxxx</td>
-                                <td colSpan='2' align='center'>22</td>
+                                <td align='center'>18/05/2020 - 28/05/2020</td>
+                                <td colSpan='2' align='center'>40</td>
                             </tr>
                             <tr>
-                                <td align='center'>xx/xx/xxxx</td>
-                                <td colSpan='2' align='center'>11</td>
+                                <td align='center'>25/05/0202 - 26/05/2020</td>
+                                <td colSpan='2' align='center'>12</td>
                             </tr>
                             <tr>
                                 <td align='center'>Total</td>
-                                <td colSpan='2' align='center'>33</td>
+                                <td colSpan='2' align='center'>52</td>
                             </tr>
                         </tbody>
                         <tbody>
                             <tr>
-                                <th colSpan='3' align='center'>Job Name</th>
+                                <th colSpan='3' align='center'>Job Name : {FakeData[1].name}</th>
                             </tr>
                         </tbody>
                         <thead>
                             <tr>
                                 <th align='center'>Date</th>
-                                <th  colSpan='2' align='center'>Workdays</th>
+                                <th colSpan='2' align='center'>Workdays</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td align='center'>xx/xx/xxxx</td>
-                                <td colSpan='2' align='center'>22</td>
+                                <td align='center'>26/05/2020 - 28/05/2020</td>
+                                <td colSpan='2' align='center'>20</td>
                             </tr>
                             <tr>
-                                <td align='center'>xx/xx/xxxx</td>
-                                <td colSpan='2' align='center'>11</td>
+                                <td align='center'>29/05/2020</td>
+                                <td colSpan='2' align='center'>8</td>
                             </tr>
                             <tr>
                                 <td align='center'>Total</td>
-                                <td colSpan='2' align='center'>33</td>
+                                <td colSpan='2' align='center'>28</td>
                             </tr>
                         </tbody>
                         <tfoot>
                             <tr>
                                 <td align='center'>Grand Total</td>
-                                <td colSpan='2' align='center'>66</td>
+                                <td colSpan='2' align='center'>80</td>
                             </tr>
                         </tfoot>
                     </Table>

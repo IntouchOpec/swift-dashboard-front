@@ -24,7 +24,9 @@ const TableBase = props => {
         createPath, 
         filterOptions, 
         limit,
-        url
+        url,
+        isMock,
+        mockData,
     } = props
     
     const [rows, setRows] = useState([])
@@ -103,7 +105,8 @@ const TableBase = props => {
                     <tr><td colSpan={keys.length + 1}>ไม่มีรายการเอกสาร</td></tr>:
                     <LoadingTable countRow={18} colSpan={8}/>
                 }
-                {rows.map(row => <RowRender key={row.id} {...row}/>)}
+                {isMock ? mockData.map(row => <RowRender key={row.id} {...row}/>) : rows.map(row => <RowRender key={row.id} {...row}/>)}
+                {/* {rows.map(row => <RowRender key={row.id} {...row}/>)} */}
                 </tbody>
             </Table>
         </Card>
