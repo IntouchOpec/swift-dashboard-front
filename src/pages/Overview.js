@@ -55,8 +55,8 @@ const OverviewPage = props => {
 const SumProgress = props => (
     <div className='col-12 mt-2'>
         <div className='d-flex justify-content-between'>
-            <div className="">{props.name}</div>
-            <div className="">{props.planValue}%</div>
+            <div className=''>{props.name}</div>
+            <div className=''>{props.planValue}%</div>
         </div>
         <Progress animated color='danger' value={props.planValue} >{props.planValue}%</Progress>
         <Progress className='mt-1' value={props.actValue}>{props.actValue}%</Progress>
@@ -115,7 +115,7 @@ const mapOptions = maps => {
 
 const GoogleMapCard = props => {
     return (
-        <Card style={{ height: "100%", width: "100%" }}>
+        <Card style={{ height: '100%', width: '100%' }}>
             <GoogleMapReact
                 bootstrapURLKeys={{ key: process.env.google_map_key }}
                 center={{ lat: props.lat, lng: props.lng }}

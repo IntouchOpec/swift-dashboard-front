@@ -38,13 +38,13 @@ const RowRender = props => {
     <tr>
         <td>
             <Link to={`/chart/${props.id}`}>
-                <Button className='rounded-0 mr-1' outline color="secondary">view</Button>
+                <Button className='rounded-0 mr-1' outline color='secondary'>view</Button>
             </Link>
             {/* <Link to={`/chart/${props.id}/edit`}>
-                <Button className='rounded-0' outline color="secondary">edit</Button>
+                <Button className='rounded-0' outline color='secondary'>edit</Button>
             </Link> */}
         </td>
-        <td>{<SwitchButton onChange={onActiveHanlder} checked={active} size="sm"/>}</td>
+        <td>{<SwitchButton onChange={onActiveHanlder} checked={active} size='sm'/>}</td>
         <td>{getChartName(props.report_type)}</td>
         <td>{props.path}</td>
         <td>{props.user}</td>

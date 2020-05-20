@@ -8,3 +8,4 @@ import './public/assets/scss/main.scss'
 const selector = document.querySelector('#app')
 
 ReactDOM.render(<App />	, selector);
+

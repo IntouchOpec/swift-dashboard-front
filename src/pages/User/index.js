@@ -19,10 +19,10 @@ const filterOptions = [
     {label: 'last_name', value: 'user__last_name'},
 ]
 
-// name: "superadmin@swiftdynamics.co.th"
-// username: "superadmin"
-// last_name: "swift-dynamics"
-// first_name: "Superadmin"
+// name: 'superadmin@swiftdynamics.co.th'
+// username: 'superadmin'
+// last_name: 'swift-dynamics'
+// first_name: 'Superadmin'
 
 const RowRender = props => {
     const [active, setActive] = useState(false)
@@ -44,13 +44,13 @@ const RowRender = props => {
         <tr>
             <td>
                 <Link to={`/user/${props.id}`}>
-                    <Button className='rounded-0 mr-1' outline color="secondary">view</Button>
+                    <Button className='rounded-0 mr-1' outline color='secondary'>view</Button>
                 </Link>
                 {/* <Link to={`/user/${props.id}/edit`}>
-                    <Button className='rounded-0' outline color="secondary">edit</Button>
+                    <Button className='rounded-0' outline color='secondary'>edit</Button>
                 </Link> */}
             </td>
-            <td>{<SwitchButton onChange={onActiveHanlder} checked={active} size="sm"/>}</td>
+            <td>{<SwitchButton onChange={onActiveHanlder} checked={active} size='sm'/>}</td>
             <td>{props.username}</td>
             <td>{props.role}</td>
             <td>{props.email}</td>

@@ -54,13 +54,13 @@ const UserDetailPage = props => {
                         </tr>
                         <tr>
                             <td>Export</td>
-                            <td colSpan='3'><Link to={`/users/export/${id}`}><Button color="warning">Export</Button></Link></td>
+                            <td colSpan='3'><Link to={`/users/export/${id}`}><Button color='warning'>Export</Button></Link></td>
                         </tr>
                         {/* <tr> */}
                             {/* <td>type</td>
                             <td>{data.report_type === 0 ? 'S-Curve': 'Manpower Plan'}</td>
                             <td>dowload</td>
-                            <td><a href="/images/myw3schoolsimage.jpg" download>{data.path}</a></td>
+                            <td><a href='/images/myw3schoolsimage.jpg' download>{data.path}</a></td>
                         </tr> */}
                         {/* <tr>
                             <td>description</td>

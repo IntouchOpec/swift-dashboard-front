@@ -15,8 +15,8 @@ export const BaseDatePicker = (props) => {
         <DatePicker
             autocomplete='off'
             className={`form-control ${message ? 'border border-danger' : ''}`}
-            calendarClassName="date-time__calendar"
-            dayClassName={() => "date-time__day"}
+            calendarClassName='date-time__calendar'
+            dayClassName={() => 'date-time__day'}
             popperModifiers={{
                 preventOverflow: {
                     enabled: true

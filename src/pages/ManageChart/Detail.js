@@ -37,7 +37,7 @@ const ChartDetailPage = props => {
                             <td>type</td>
                             <td>{data.report_type === 0 ? 'S-Curve': 'Manpower Plan'}</td>
                             <td>dowload</td>
-                            <td><a href="/images/myw3schoolsimage.jpg" download>{data.path}</a></td>
+                            <td><a href='/images/myw3schoolsimage.jpg' download>{data.path}</a></td>
                         </tr>
                         <tr>
                             <td>description</td>

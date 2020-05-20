@@ -2,11 +2,7 @@ import axios from 'axios'
 import { refeshTokenURL, apiURL } from './endpoint'
 // import { store } from './store'
 import qs from 'querystring'
-import {AuthContext} from 'providers'
-
-import { AUTH_UNAUTHENTICATED, GLOBAL_ADD_LOADER, GLOBAL_REMOVE_LOADER } from './index'
 import Swal from 'sweetalert2'
-import uuidV4 from 'uuid/v4'
 
 let clientRefreshTokenRequest
 

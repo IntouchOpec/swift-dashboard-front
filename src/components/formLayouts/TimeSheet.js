@@ -64,6 +64,7 @@ const TimeSheetForm = props => {
                                     isClearable
                                     name={`${fieldTimeSheets}.job`}
                                     label='job'
+                                    setValue={setValue}
                                     options={jobs}
                                     placeholder=''
                                     error={errorTimeSheets[`${fieldTimeSheets}.day`]}
@@ -85,7 +86,7 @@ const TimeSheetForm = props => {
                                 </FormGroup> */}
                             </div>
                             <div className='col-2 mx-2 align-items-end'>
-                                <InputField type='text' label='Day' name={`${fieldTimeSheets}.day`} error={errorTimeSheets[`${fieldTimeSheets}.day`]} register={register({ required: 'Required', pattern: /[A-Za-z]{3}/ })} />
+                                <InputField type='text' label='Day' name={`${fieldTimeSheets}.day`} error={errorTimeSheets[`${fieldTimeSheets}.day`]} register={register({  })} />
                             </div>
                             {/* <div className='col-1 align-self-center'> */}
                             <Button color='danger' style={{ marginTop: '2em' }} className='h-100' onClick={() => removeTimeSheets(timeSheet)}>x</Button>
@@ -94,7 +95,9 @@ const TimeSheetForm = props => {
                     )
                 })}
                 <Button onClick={addTimeSheet} color='secondary' className='m-2 text-center rounded-0 btn'>Add TimeSheet</Button>
-
+                <div>
+                    <Button onClick={submitForm}  color='warning' className='m-2 text-center rounded-0 btn'>Submit</Button>
+                </div>
             </form>
         </FormContext>)
 }

@@ -1,11 +1,7 @@
 import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
 import TableBase from 'components/tables/TableBase'
-import client from 'utils/client'
-import { reportsURL, reportsDetailURL } from 'utils/endpoint'
-import { Table, Card, Button, Input } from 'reactstrap'
-import { getChartName, dateFormat } from 'utils/formats'
-import SwitchButton from 'bootstrap-switch-button-react'
+import { reportsURL } from 'utils/endpoint'
+import { Button } from 'reactstrap'
 
 const LIMIT = 10
 
@@ -39,7 +35,7 @@ const RowRender = props => {
         <td>{props.code}</td>
         <td>{props.name}</td>
         <td>{props.user}</td>
-        <td><Button color="danger">Delete</Button></td>
+        <td><Button color='danger'>Delete</Button></td>
     </tr>
 )}
 /* const RowRender = props => {
@@ -48,7 +44,7 @@ const RowRender = props => {
             <td>{job.code}</td>
             <td>{job.name}</td>
             <td>{props.user}</td>
-            <td><Button color="danger">Delete</Button></td>
+            <td><Button color='danger'>Delete</Button></td>
         </tr>
     )
 } */

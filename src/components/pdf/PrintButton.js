@@ -16,12 +16,12 @@ const range = (start, end) => {
 };
 
 
-const PrintButton = ({ id, label }) => (<div className="tc mb4 mt2">
+const PrintButton = ({ id, label }) => (<div className='tc mb4 mt2'>
     {/*
     Getting pixel height in milimeters:
     https://stackoverflow.com/questions/7650413/pixel-to-mm-equation/27111621#27111621
   */}
-    <div id="myMm" style={{ height: "1mm" }} />
+    <div id='myMm' style={{ height: '1mm' }} />
 
     <Button onClick={() => {
         const input = document.getElementById(id);
@@ -44,11 +44,11 @@ const PrintButton = ({ id, label }) => (<div className="tc mb4 mt2">
                 if (inputHeightMm > a4HeightMm) {
                     // elongated a4 (system print dialog will handle page breaks)
                     pdf = new jsPDF('p', 'mm', [inputHeightMm + 16, a4WidthMm]);
-                    console.log(" create success 1 ")
+                    console.log(' create success 1 ')
                 } else {
                     // standard a4
                     pdf = new jsPDF();
-                    console.log(" create success 2 ")
+                    console.log(' create success 2 ')
                 }
 
                 pdf.addImage(imgData, 'PNG', 0, 0);
@@ -59,7 +59,7 @@ const PrintButton = ({ id, label }) => (<div className="tc mb4 mt2">
         {label}
     </Button>
     {/* <div
-        className="pa2 ba bw1 b--black bg-yellow black-90 br2 dib pointer dim shadow-1"
+        className='pa2 ba bw1 b--black bg-yellow black-90 br2 dib pointer dim shadow-1'
         onClick={() => {
             const input = document.getElementById(id);
             const inputHeightMm = pxToMm(input.offsetHeight);
@@ -81,11 +81,11 @@ const PrintButton = ({ id, label }) => (<div className="tc mb4 mt2">
                     if (inputHeightMm > a4HeightMm) {
                         // elongated a4 (system print dialog will handle page breaks)
                         pdf = new jsPDF('p', 'mm', [inputHeightMm + 16, a4WidthMm]);
-                        console.log(" create success 1 ")
+                        console.log(' create success 1 ')
                     } else {
                         // standard a4
                         pdf = new jsPDF();
-                        console.log(" create success 2 ")
+                        console.log(' create success 2 ')
                     }
 
                     pdf.addImage(imgData, 'PNG', 0, 0);

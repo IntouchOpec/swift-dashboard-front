@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import { BrowserRouter as Router, Switch, Route, Link, useParams } from 'react-router-dom'
+import React from 'react'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import { AuthContext } from './providers'
 import { Spinner } from 'reactstrap'
 import Layout from 'components/layouts'
@@ -43,7 +43,14 @@ const Routes = props => {
         <Router>
             <AuthContext.Consumer>{context => {
                 if (context.auth.loading) {
-                    return <Spinner color="primary" />
+                    return <div className='container d-flex h-100'>
+                        <div className='row align-self-center w-100'>
+                            <div className='col-3 mx-auto text-center'>
+                                <Spinner color='primary' />
+                                <p>กรุณารอสักครู่.....</p>
+                            </div>
+                        </div>
+                    </div>
                 }
                 if (context.auth.auth) {
                     return <Layout user={context.auth}>

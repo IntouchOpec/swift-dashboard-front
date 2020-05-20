@@ -1,18 +1,18 @@
 import React, {useState} from 'react'
-import ThunderstormWithLightRainIcon from'../../public/icons/weather/5896934 - cloud moon rain sun weather.png'
-import DrizzleIcon from'../../public/icons/weather/5896966 - cloud moon rain sun weather.png'
-import LightRainIcon from'../../public/icons/weather/5896965 - cloud moon rain sun weather.png'
-import HeavyRainIcon from '../../public/icons/weather/5896932 - cloud moon rain sun weather.png'
-import LightSnowIcon from'../../public/icons/weather/5896947 - cloud moon rain sun weather.png'
-import SnowIcon from'../../public/icons/weather/5896946 - cloud moon rain sun weather.png'
-import FlurriesIcon from'../../public/icons/weather/5896948 - cloud moon rain sun weather.png'
-import SleetIcon from'../../public/icons/weather/5896970 - cloud moon rain sun weather.png'
-import MistIcon from'../../public/icons/weather/5896943 - cloud moon rain sun weather.png'
-import FreezingFogIcon from'../../public/icons/weather/5896968 - cloud moon rain sun weather.png'
-import ClearSkyIcon from'../../public/icons/weather/5896969 - cloud moon rain sun weather.png'
-import FewCloudsIcon from'../../public/icons/weather/5896929 - cloud moon rain sun weather.png'
-import OvercastCloudsIcon from '../../public/icons/weather/5896931 - cloud moon rain sun weather.png' 
-import DefualtIcon from '../../public/icons/weather/5896975 - cloud moon rain sun weather.png'
+import ThunderstormWithLightRainIcon from'../../public/assets/images/5896934 - cloud moon rain sun weather.png'
+import DrizzleIcon from'../../public/assets/images/5896966 - cloud moon rain sun weather.png'
+import LightRainIcon from'../../public/assets/images/5896965 - cloud moon rain sun weather.png'
+import HeavyRainIcon from '../../public/assets/images/5896932 - cloud moon rain sun weather.png'
+import LightSnowIcon from'../../public/assets/images/5896947 - cloud moon rain sun weather.png'
+import SnowIcon from'../../public/assets/images/5896946 - cloud moon rain sun weather.png'
+import FlurriesIcon from'../../public/assets/images/5896948 - cloud moon rain sun weather.png'
+import SleetIcon from'../../public/assets/images/5896970 - cloud moon rain sun weather.png'
+import MistIcon from'../../public/assets/images/5896943 - cloud moon rain sun weather.png'
+import FreezingFogIcon from'../../public/assets/images/5896968 - cloud moon rain sun weather.png'
+import ClearSkyIcon from'../../public/assets/images/5896969 - cloud moon rain sun weather.png'
+import FewCloudsIcon from'../../public/assets/images/5896929 - cloud moon rain sun weather.png'
+import OvercastCloudsIcon from '../../public/assets/images/5896931 - cloud moon rain sun weather.png' 
+import DefualtIcon from '../../public/assets/images/5896975 - cloud moon rain sun weather.png'
 import moment from 'moment'
 import { Popover, PopoverHeader, PopoverBody } from 'reactstrap'
 
@@ -71,7 +71,7 @@ const PopoverDetail = ({description, datetime}) =>{
     console.log(datetime)
     const toggle = () => setPopoverOpen(!popoverOpen);
     return (
-        <Popover placement="img" isOpen={popoverOpen} target={`img-${datetime}`} toggle={toggle}>
+        <Popover placement='img' isOpen={popoverOpen} target={`img-${datetime}`} toggle={toggle}>
         <PopoverHeader>{description}</PopoverHeader>
         {/* <PopoverBody>Sed posuere consectetur est at lobortis. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum.</PopoverBody> */}
       </Popover>

@@ -46,15 +46,15 @@ const SCurve = props => {
     let datas = []
     let keys = []
     let budgetedTotalCost = 0
-    let dateAct = ""
+    let dateAct = ''
     for (let index = 1 ;index < rows.length; index++) {
       let d = {}
       d.data = {}
       for (const key in rows[index]) {
         let name = rows[0][key]
-        if (Object.prototype.toString.call(name) === "[object Date]") {
+        if (Object.prototype.toString.call(name) === '[object Date]') {
           keys.push({ key, name })
-          name = moment(name).format("YYYY-MMM-DD")
+          name = moment(name).format('YYYY-MMM-DD')
           if (dateAct === rows[index][key] && index === 1) {
             continue
           }
@@ -62,7 +62,7 @@ const SCurve = props => {
           dateAct = rows[index][key]
         } else {
           d[name] = rows[index][key]
-          if ("Budgeted Total Cost" === name) {
+          if ('Budgeted Total Cost' === name) {
             budgetedTotalCost = rows[index][key]
           }
         }

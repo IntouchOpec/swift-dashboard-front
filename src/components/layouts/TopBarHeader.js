@@ -20,7 +20,7 @@ const TopBarHeader = props => {
         }
 
         return <Navbar className='bg-blue' expand='md'>
-                <Link style={{ color: '#ffff' }} to='/'>CMDASHBOARD</Link>
+                <div onClick={props.toggle} className='text-white'>CMDASHBOARD</div>
                 <Nav className='mr-auto p' navbar />
                 <Dropdown isOpen={dropdownOpen} toggle={toggle}>
                 <DropdownToggle caret className='avatar'>

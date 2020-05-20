@@ -2,9 +2,8 @@ import React, { useEffect, useState } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import client from 'utils/client'
 import { usersDetailURL } from 'utils/endpoint'
-import { Card, Table, Button } from 'reactstrap'
+import { Table, Button } from 'reactstrap'
 import { ChevronDoubleLeft } from 'react-bootstrap-icons'
-import { dateFormat } from 'utils/formats'
 import Page from 'components/pdf/Export'
 import PrintButton from 'components/pdf/PrintButton'
 import SelectReact from 'components/forms/SelectReact'
@@ -89,7 +88,7 @@ const UserExportPage = props => {
                     />
                 </div>
                 <div className='col-sm-2 col-md-2'>
-                    <PrintButton id={`user-${id}`} label={"Save PDF"} />
+                    <PrintButton id={`user-${id}`} label={'Save PDF'} />
                 </div>
                 <div className='col-sm-2 col-md-2'>
                     <Link to={`/users/${id}`}><Button className=''><ChevronDoubleLeft /> กลับ </Button></Link>

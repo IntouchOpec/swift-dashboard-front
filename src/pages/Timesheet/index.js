@@ -1,11 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
 import TableBase from 'components/tables/TableBase'
 import client from 'utils/client'
 import { reportsURL, reportsDetailURL } from 'utils/endpoint'
-import { Table, Card, Button, Input } from 'reactstrap'
-import { getChartName, dateFormat } from 'utils/formats'
-import SwitchButton from 'bootstrap-switch-button-react'
+import { dateFormat } from 'utils/formats'
 
 const LIMIT = 10
 

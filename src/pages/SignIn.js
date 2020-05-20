@@ -2,17 +2,14 @@ import React from 'react'
 import { Card } from 'reactstrap'
 import FormSingIn from 'components/formLayouts/SignIn'
 import { LockFill } from 'react-bootstrap-icons'
-import logo_cm from '../../public/assets/images/CMTool-logo-black.png'
 import { Link } from 'react-router-dom'
-import {AuthContext} from 'providers/index' 
-import {useForm} from 'react-hook-form'
 import axios from 'axios'
 import qs from 'querystring'
 import { AUTH_AUTHENTICATED } from 'utils'
 import Swal from 'sweetalert2'
 
 const submitLogIn = dispatch => {
-    return (data) => axios.post('http://localhost:8000/api/o/token/', qs.stringify({
+    return (data) => axios.post('http://103.30.127.4:8000/api/o/token/', qs.stringify({
             'username': data.email,
             'password': data.password,
             'grant_type': 'password',
@@ -29,7 +26,7 @@ const submitLogIn = dispatch => {
         })
     }).catch(err => Swal.fire({
         type: 'error',
-        title: 'มีบางอย่างผิดพลาดกรุณาติดต่อผู้ดูแลระบบ',
+        title: 'รหัสไม่ถูกต้อง กรุณากรอกผ่านใหม่อีกครั้ง',
         showConfirmButton: false,
         timer: 1500
     }))

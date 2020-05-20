@@ -12,15 +12,15 @@ const CreateTimeSheetPage = props => {
     const [jobs, setJobs] = useState([])
     const history = useHistory()
 
-    const submit = data => {
-        client.post(timeSheetURL)
-            .then(res => {
-                Swal.fire('Created !', 'Success .', 'success')
-                    .then(result => history.push('/timesheet'))
-            })
-            .catch(err => {
-                setErrors(err)
-            })
+    const submitForm = data => {
+        // client.post(timeSheetURL)
+        //     .then(res => {
+        Swal.fire('Created !', 'Success .', 'success')
+            .then(result => history.push('/timesheet'))
+        // })
+        // .catch(err => {
+        //     setErrors(err)
+        // })
     }
 
     useEffect(() => {
@@ -33,11 +33,11 @@ const CreateTimeSheetPage = props => {
     }, [])
 
     return <div className='mt-3'>
-        <h3>New Time Sheet</h3>
+        <h3>New TimeSheet</h3>
         <hr />
         <Card>
             <h4 className='my-4 ml-2'>List</h4>
-            <TimeSheetForm defaultValues={{}} jobs={jobs} users={users} submit={submit} errors={errors} />
+            <TimeSheetForm defaultValues={{}} jobs={jobs} users={users} submitForm={submitForm} errors={errors} />
         </Card>
     </div>
 }

@@ -9,6 +9,19 @@ import moment from 'moment'
 import Select from 'react-select'
 import { dateFormat } from 'utils/formats'
 
+
+const customStyles = {
+    control: (base, state) => ({
+        ...base,
+        borderRadius: '0px'
+    }),
+    valueContainer: (base, state) => ({
+        ...base,
+        padding: '6px 8px'
+    })
+}
+
+
 const SCurvePage = props => {
     const [date, setDate] = useState(new Date())
     const [data, setData] = useState({})
@@ -48,8 +61,8 @@ const SCurvePage = props => {
                         autocomplete='off'
                         onChange={onChange}
                         className={`form-control`}
-                        calendarClassName="date-time__calendar"
-                        dayClassName={() => "date-time__day"}
+                        calendarClassName='date-time__calendar'
+                        dayClassName={() => 'date-time__day'}
                         popperModifiers={{
                             preventOverflow: {
                                 enabled: true
@@ -59,6 +72,7 @@ const SCurvePage = props => {
                 </div>
                 <div className='col-6'>
                     <Select
+                        styles={customStyles}
                         onChange={onChangeOption}
                         value={select}
                         options={options}
@@ -66,9 +80,9 @@ const SCurvePage = props => {
                     />
                 </div>
             </div>
-            <CardChart className='mt-3 card' rows={data.source} RenderChildren={SCurve} name='SCurve' />
+            {data && <CardChart className='mt-3 card' rows={data.source} RenderChildren={SCurve} name='SCurve' />}
             <Card>
-                <Table striped>
+                {data && <Table striped>
                     <tbody>
                         <tr>
                             <td>created_by</td>
@@ -80,14 +94,14 @@ const SCurvePage = props => {
                             <td>type</td>
                             <td>{data.report_type === 0 ? 'S-Curve' : 'Manpower Plan'}</td>
                             <td>dowload</td>
-                            <td><a href="/images/myw3schoolsimage.jpg" download>{data.path}</a></td>
+                            <td><a href='/images/myw3schoolsimage.jpg' download>{data.path}</a></td>
                         </tr>
                         <tr>
                             <td>description</td>
                             <td colSpan='3'>{data.description && data.description.length === 0 ? '-' : data.description}</td>
                         </tr>
                     </tbody>
-                </Table>
+                </Table>}
             </Card>
         </div>
     )

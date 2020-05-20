@@ -68,7 +68,7 @@ const ChartForm = props => {
                     {select !== '2' && <div className='col-6'>
                         <FormGroup className='p-0 m-0'>
                             <div><Label htmlFor={`file`}>file</Label></div>
-                            <input name='file' ref={register({ required: 'Required', })} type="file" onChange={onChangeFile} />
+                            <input name='file' ref={register({ required: 'Required', })} type='file' onChange={onChangeFile} />
                             {errors['file'] !== undefined && <div style={{ width: '100%', marginTop: '.25rem', fontSize: '80%', color: '#dc3545' }}>{errors['file'].message}</div>}
                         </FormGroup>
                     </div>}
@@ -95,7 +95,7 @@ const ChartForm = props => {
 
 const pattern = {
     value: /[0-9]/i,
-    message: "invalid"
+    message: 'invalid'
 }
 const OverviewForm = props => {
     const { register, name, errors } = props
