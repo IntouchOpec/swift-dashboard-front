@@ -101,7 +101,7 @@ const UserExportPage = props => {
                         <thead>
                             <tr>
                                 <th>Staff Name : {data.full_name}</th>
-                                <th>Month : {yearfilter.value}</th>
+                                <th>Month : {monthfilter.label}</th>
                                 <th>Total Assigned : 2</th>
                             </tr>
                         </thead>
