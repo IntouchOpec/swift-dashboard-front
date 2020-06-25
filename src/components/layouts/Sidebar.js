@@ -9,6 +9,8 @@ const menus = [
     { admin: false, path: '/s_curve', name: 'S-Curve' },
     { admin: false, path: '/manpower_plan', name: 'Manpower Plan' },
     { admin: false, path: '/timesheet', name: 'Timesheets' },
+    { admin: false, path: '/company', name: 'Company' },
+    { admin: false, path: '/job_type', name: 'Job Type' },
     // { path: '/manpower_cost',name: 'Manpower Cost' },
     // { path: '/camera',name: 'Camera' },
     // { path: '/ai_camera',name: 'AI Camera' },

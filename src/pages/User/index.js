@@ -50,7 +50,7 @@ const RowRender = props => {
                     <Button className='rounded-0' outline color='secondary'>edit</Button>
                 </Link> */}
             </td>
-            <td>{<SwitchButton onChange={onActiveHanlder} checked={active} size='sm'/>}</td>
+            <td><SwitchButton onChange={onActiveHanlder} checked={active} size='sm'/></td>
             <td>{props.username}</td>
             <td>{props.role}</td>
             <td>{props.email}</td>
