@@ -14,10 +14,11 @@ import CreateTimeSheetPage from 'pages/Timesheet/Create'
 import TimeSheetDetailPage from 'pages/Timesheet/Detail'
 import JobPage from 'pages/Job'
 import CreateJobPage from 'pages/Job/Create'
-import UserExportPage from 'pages/User/Export'
-import UserDetailPage from 'pages/User/Detail'
 import ManageUserPage from 'pages/User'
 import CreateUserPage from 'pages/User/Create'
+import EditUserPage from 'pages/User/Edit'
+import UserDetailPage from 'pages/User/Detail'
+import UserExportPage from 'pages/User/Export'
 import SettingPage from 'pages/Setting'
 import SCurvePage from 'pages/SCurve'
 import ManpowerPlanPage from 'pages/ManpowerPlan'
@@ -64,6 +65,7 @@ const Routes = props => {
                             <Route path='/charts' component={ManageChartPage} />
                             <Route path='/jobs/create' component={CreateJobPage} />
                             <Route path='/jobs' component={JobPage} />
+                            <Route path='/user/:id/edit' component={EditUserPage} />
                             <Route path='/user/:id' component={UserDetailPage} />
                             <Route path='/users/export/:id' component={UserExportPage} />
                             <Route path='/users/create' component={CreateUserPage} />

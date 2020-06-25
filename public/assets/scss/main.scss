@@ -666,3 +666,8 @@ select {
   border: 1px solid #ced4da;
   transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 }
+
+.important {
+  color: red;
+  font-size: 1em;
+}
