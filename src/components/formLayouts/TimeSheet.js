@@ -1,112 +1,197 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useForm, FormContext } from 'react-hook-form'
 import SelectReact from 'components/forms/SelectReact'
 import DateRange from 'components/forms/DateRangeField'
-import { Button, FormGroup, Label } from 'reactstrap'
+import { Button, FormGroup, Label, Card } from 'reactstrap'
 import InputField from 'components/forms/InputField'
 import { XSquareFill } from 'react-bootstrap-icons'
+import { Controller } from 'react-hook-form'
+import { isEmpty } from 'utils'
 
 const TimeSheetForm = props => {
-    const { submitForm, users, defaultValues, jobs } = props
-    const [timeSheets, setTimeSheets] = useState([0])
+    const { submitForm, users, defaultValues, jobs, jobTypes } = props
+    const [userList, setuserList] = useState([0])
     const [counter, setCounter] = useState(1)
     const methods = useForm()
-    const { register, unregister, handleSubmit, setValue, errors, setError } = methods
+    const { register, unregister, handleSubmit, setValue, errors, setError, clearError } = methods
 
-    const removeTimeSheets = index => {
-        setTimeSheets(prevIndexes => [...prevIndexes.filter(item => item !== index)])
-        const fieldTimeSheets = `[timeSheets${index}]`
-        unregister(`${fieldTimeSheets}.`)
+    const removeUser = index => {
+        setuserList(prevIndexes => [...prevIndexes.filter(item => item !== index)])
+        const fielduserList = `users[${index}]`
+        unregister(`${fielduserList}.`)
     }
 
-    const addTimeSheet = () => {
-        setTimeSheets(prevIndexes => [...prevIndexes, counter])
-        setCounter(prevCounter => prevCounter + 1)
+    const addUser = () => {
+        let count = 0
+        setuserList(prevIndexes => [...prevIndexes, counter])
+        setCounter(prevCounter => {
+            count = prevCounter + 1
+            return count
+        })
     }
 
     return (
-        <FormContext {...methods}>
-            <form onSubmit={handleSubmit(submitForm)}>
-                {timeSheets.map((timeSheet, index) => {
-                    const fieldTimeSheets = `[timeSheets${index}]`
-                    let errorTimeSheets = {}
-                    if (!!errors.timeSheets) {
-                        if (errors.timeSheets[index]) {
-                            Object.keys(errors.timeSheets[index]).forEach(key => {
-                                errorTimeSheets[`${fieldTimeSheets}.${key}`] = errors.timeSheets[index][key]
-                            })
-                        }
-                    }
-                    return (
-                        <div className='row' key={fieldTimeSheets}>
-                            <div className='col-3 mx-2 align-items-end'>
-                                <SelectField
-                                    setValue={setValue}
-                                    name={`${fieldTimeSheets}.user`}
-                                    label='user'
-                                    options={users}
-                                    placeholder=''
-                                />
-                            </div>
-                            <DateRange
-                                col='2'
-                                defaultValues={defaultValues}
-                                setValue={setValue}
-                                register={register}
-                                errors={errors}
-                                setError={setError}
-                                defualtValues={{ start: defaultValues['start_date'], end: defaultValues['completion_date'] }}
-                                start={{ label: 'start date', name: `${fieldTimeSheets}.start_date`, key: `${fieldTimeSheets}.start_date` }}
-                                end={{ label: 'end date', name: `${fieldTimeSheets}.end_date`, key: `${fieldTimeSheets}.end_date` }}
-                            />
-                            <div className='col-2'>
-                                <Select
-                                    isClearable
-                                    name={`${fieldTimeSheets}.job`}
-                                    label='job'
-                                    setValue={setValue}
-                                    options={jobs}
-                                    placeholder=''
-                                    error={errorTimeSheets[`${fieldTimeSheets}.day`]}
-                                />
-                                {/* <FormGroup>
-                                    <div><Label for={`user-user`}>job</Label></div>
-                                    <SelectReact
-                                        isClearable
-                                        name={`${fieldTimeSheets}.job`}
-                                        options={jobs}
-                                        setValue={setValue}
-                                        errors={fieldTimeSheets}
-                                        register={register}
-                                        onChange={() => { }}
-                                        value={{}}
-                                        placeholder=''
-                                    />
-                                    {errorTimeSheets[`${fieldTimeSheets}.job`] && <div style={{ width: '100%', marginTop: '.25rem', fontSize: '80%', color: '#dc3545' }}>{errorTimeSheets[`${fieldTimeSheets}.job`].message}</div>}
-                                </FormGroup> */}
-                            </div>
-                            <div className='col-2 mx-2 align-items-end'>
-                                <InputField type='text' label='Day' name={`${fieldTimeSheets}.day`} error={errorTimeSheets[`${fieldTimeSheets}.day`]} register={register({  })} />
-                            </div>
-                            {/* <div className='col-1 align-self-center'> */}
-                            <Button color='danger' style={{ marginTop: '2em' }} className='h-100' onClick={() => removeTimeSheets(timeSheet)}>x</Button>
-                            {/* </div> */}
-                        </div>
-                    )
-                })}
-                <Button onClick={addTimeSheet} color='secondary' className='m-2 text-center rounded-0 btn'>Add TimeSheet</Button>
-                <div>
-                    <Button onClick={submitForm}  color='warning' className='m-2 text-center rounded-0 btn'>Submit</Button>
+        <>
+            <FormContext {...methods}>
+                <div className='row m-0 p-0 justify-content-between'>
+                    <h3>New TimeSheet</h3>
+                    <div >
+                        <Button
+                            onClick={handleSubmit(submitForm)}
+                            type='submit'
+                            disabled={!isEmpty(errors)}
+                            color='warning' className='m-2 text-center rounded-0 btn'>
+                            Submit
+                    </Button>
+                    </div>
                 </div>
-            </form>
-        </FormContext>)
+                <hr />
+                <form onSubmit={handleSubmit(submitForm)}>
+                    {userList.map((timeSheet, index) => {
+                        const fielduserList = `users[${index}]`
+                        let erroruserList = {}
+                        if (!!errors.userList) {
+                            if (errors.userList[index]) {
+                                Object.keys(errors.userList[index]).forEach(key => {
+                                    erroruserList[`${fielduserList}.${key}`] = errors.userList[index][key]
+                                })
+                            }
+                        }
+                        return (
+                            <Card className='m-3'>
+                                <div className='row' key={fielduserList}>
+                                    <div className='col-8 mx-2 align-items-end'>
+                                        <SelectField
+                                            index={index}
+                                            clearError={clearError}
+                                            rules={{ required: 'Required' }}
+                                            errors={errors}
+                                            register={register}
+                                            required={true}
+                                            setError={setError}
+                                            setValue={setValue}
+                                            name={`${fielduserList}.user`}
+                                            label='user'
+                                            options={users}
+                                            placeholder=''
+                                        />
+                                    </div>
+                                    <div class="col-2">
+                                        <Button color='danger' style={{ marginTop: '2em' }} className='rounded-0' onClick={() => removeUser(index)}>Remove User</Button>
+                                    </div>
+                                </div>
+                                <TimeSheetDetail
+                                    defaultValues={defaultValues}
+                                    fielduserList={fielduserList}
+                                    setValue={setValue}
+                                    clearError={clearError}
+                                    register={register}
+                                    jobTypes={jobTypes}
+                                    jobs={jobs}
+                                    errors={errors}
+                                    setError={setError}
+                                    erroruserList={erroruserList}
+                                />
+                            </Card>
+                        )
+                    })}
+                    <div className='mx-3'>
+                        <Button color='secondary' style={{ marginTop: '2em' }} className='rounded-0' onClick={addUser}>Add User</Button>
+                    </div>
+                </form>
+            </FormContext>
+        </>
+    )
 }
 
 
+const TimeSheetDetail = props => {
+    const [timeSheets, setTimeSheet] = useState([0])
+    const [counter, setCounter] = useState(1)
+
+    const addTimeSheet = () => {
+        setTimeSheet(prevIndexes => [...prevIndexes, counter])
+        setCounter(prevCounter => prevCounter + 1)
+    }
+
+    const removeTimeSheet = index => {
+        setTimeSheet(prevIndexes => [...prevIndexes.filter(item => item !== index)])
+        unregister(`${fielduserList}.timeSheet[${index}]`)
+    }
+
+    const { defaultValues, fielduserList, setValue, jobTypes, jobs, erroruserList, register, errors, setError, clearError } = props
+    return <>
+        {timeSheets.map((timeSheet, index) => {
+            let fieldTimeSheet = `${fielduserList}.timeSheet[${index}]`
+            return <>
+                <div className='row ml-2'>
+                    <div className='col-2'>
+                        <Select
+                            isClearable
+                            index={index}
+                            name={`${fieldTimeSheet}.jobTypes`}
+                            label='job types'
+                            setValue={setValue}
+                            rules={{ required: 'Required' }}
+                            required={true}
+                            options={jobTypes}
+                            placeholder=''
+                            register={register}
+                            error={erroruserList[`${fieldTimeSheet}.jobTypes`]}
+                        />
+                    </div>
+                    <div className='col-3'>
+                        <Select
+                            isClearable
+                            register={register}
+                            required={true}
+                            name={`${fieldTimeSheet}.job`}
+                            label='job'
+                            setValue={setValue}
+                            options={jobs}
+                            placeholder=''
+                            error={erroruserList[`${fieldTimeSheet}.day`]}
+                        />
+                    </div>
+                    <DateRange
+                        col='2'
+                        defaultValues={defaultValues}
+                        setValue={setValue}
+                        register={register}
+                        setError={setError}
+                        clearError={clearError}
+                        // setValue=
+                        errors={errors}
+                        required={true}
+                        setError={setError}
+                        defualtValues={{ start: defaultValues['start_date'], end: defaultValues['completion_date'] }}
+                        start={{ label: 'start date', name: `${fieldTimeSheet}.start_date`, key: `${fieldTimeSheet}.start_date` }}
+                        end={{ label: 'end date', name: `${fieldTimeSheet}.end_date`, key: `${fieldTimeSheet}.end_date` }}
+                    />
+                    <div className='col-1 mx-2 align-items-end'>
+                        <InputField type='text' label='Day' name={`${fieldTimeSheet}.day`} error={erroruserList[`${fieldTimeSheet}.day`]} register={register({})} />
+                    </div>
+                    <Button color='danger' style={{ marginTop: '2em' }} className='rounded-0 h-100' onClick={() => removeTimeSheet(index)}>Remove Time Sheet</Button>
+                </div>
+            </>
+        })}
+        <div className='mx-3'>
+            <Button onClick={addTimeSheet} color='secondary' className='m-2 text-center rounded-0 btn'>Add Time Sheet</Button>
+        </div>
+    </>
+}
+
 const Select = props => {
     const [data, setData] = useState()
-    const { name, label, options, setValue, placeholder, error } = props
+
+    const { name, label, options, setValue, placeholder, error, register } = props
     let message
+
+    useEffect(() => {
+        register(name)
+        console.log(error)
+    }, [])
+
 
     if (error) {
         message = error.message
@@ -117,6 +202,7 @@ const Select = props => {
         setValue(name, item)
         return
     }
+
     return (
         <FormGroup>
             <div><Label for={`${label}-${name}`}>{label}</Label></div>
@@ -126,24 +212,44 @@ const Select = props => {
                 options={options}
                 onChange={onChange}
                 value={data}
+                register={register}
                 placeholder={placeholder}
             />
             {message && <div style={{ width: '100%', marginTop: '.25rem', fontSize: '80%', color: '#dc3545' }}>{message}</div>}
         </FormGroup>
     )
 }
+
 const SelectField = props => {
     const [data, setData] = useState()
-    const { error, name, label, options, setValue, placeholder } = props
+    // const { setError, clearError } = useFormContext()
+    const { index, error, errors, name, label, options, setValue, placeholder, register, required, setError, rules, clearError } = props
     let message
+
+    useEffect(() => {
+        // setError(name, 'required', `User is required!`)
+    }, [data])
+
+    useEffect(() => {
+        register({ name, required: `User is required!` })
+        // setError(name, 'required', `User is required!`)
+    }, [])
 
     if (error) {
         message = error.message
+    }
+    if (errors['users']) {
+        if (errors['users'][index]) {
+            if (errors['users'][index].user) {
+                message = errors['users'][index].user.message
+            }
+        }
     }
 
     const onChange = item => {
         setData(item)
         setValue(name, item)
+        clearError(name)
         return
     }
 
@@ -171,6 +277,7 @@ const SelectField = props => {
                         </Label>
                     </div>
                     <SelectReact
+                        label={label}
                         isClearable
                         name={name}
                         options={options}

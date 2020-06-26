@@ -20,14 +20,21 @@ export const weathersURL = `${endpoint}weathers/`
 
 export const groupsURL = `${endpoint}groups/`
 
+export const companyURL = `${endpoint}companies/`
+export const companyDetailURL = `${endpoint}companies/:id/`
+
+export const jobtypeURL = `${endpoint}job_types/`
+export const jobtypeDetailURL = `${endpoint}job_types/:id/`
+
 export const settingURL = `${endpoint}settings/`
 
-export const companyURL = `${endpoint}companies/`
 
 export const getWeatherURL = (long, lang, days, qp) => {
     return `${weatherURL}?key=${process.env.weather_key}q=${long},${lang}&days=${days}`
 }
 
-export const timeSheetURL = `${endpoint}timesheet/`
+export const timeSheetURL = `${endpoint}time_sheets/`
 
 export const jobsURL = `${endpoint}jobs/`
+
+export const jobTypesURL = `${endpoint}job_types/`

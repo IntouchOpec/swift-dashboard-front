@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import Select from 'react-select'
 
 const customStyles = {
@@ -10,11 +10,12 @@ const customStyles = {
 }
 
 const SelectField = props => {
-    const { value, onChange ,name ,options ,placeholder } = props
-    
+    const { value, onChange ,name ,options ,placeholder, label } = props
+
     return (
         <Select 
             {...props}
+            inputProps={`${name}-${label}`}
             onChange={onChange}
             value={value}
             styles={customStyles}
