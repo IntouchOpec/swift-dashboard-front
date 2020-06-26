@@ -1,6 +1,6 @@
 import React, { useEffect, useState, Component } from 'react'
 import TableBase from 'components/tables/TableBase'
-import { companyDetailURL, companyURL } from 'utils/endpoint'
+import { jobtypeDetailURL, jobtypeURL } from 'utils/endpoint'
 import { Button } from 'reactstrap'
 import { Link } from 'react-router-dom'
 import client from 'utils/client'
@@ -9,23 +9,23 @@ import { useHistory } from 'react-router-dom'
 
 const LIMIT = 10
 
-const KEYS = ['Company Code','Company Name', 'Create By','-']
+const KEYS = ['Job Type Code','Job Type Name', 'Create By','-']
 
 const filterOptions = [
-    {label: 'Company Code', value: 'code'},
-    {label: 'Company Name', value: 'cname'},
+    {label: 'Job Type Code', value: 'jobtype_code'},
+    {label: 'Job Type Name', value: 'jobtype_name'},
     {label: 'Create By', value: 'user'},
 ]
 const FakeData = [
-    {code: '001', name: 'Company A', user:'pao'},
-    {code: '002', name: 'Company B', user:'pao'},
-    {code: '003', name: 'Company C', user:'pao'},
-    {code: '004', name: 'Company D', user:'pao'},
-    {code: '005', name: 'Company E', user:'pao'},
-    {code: '006', name: 'Company F', user:'pao'},
-    {code: '007', name: 'Company G', user:'pao'},
-    {code: '008', name: 'Company H', user:'pao'},
-    {code: '009', name: 'Company I', user:'pao'},
+    {code: '001', name: 'Job Type A', user:'pao'},
+    {code: '002', name: 'Job Type B', user:'pao'},
+    {code: '003', name: 'Job Type C', user:'pao'},
+    {code: '004', name: 'Job Type D', user:'pao'},
+    {code: '005', name: 'Job Type E', user:'pao'},
+    {code: '006', name: 'Job Type F', user:'pao'},
+    {code: '007', name: 'Job Type G', user:'pao'},
+    {code: '008', name: 'Job Type H', user:'pao'},
+    {code: '009', name: 'Job Type I', user:'pao'},
 ]
   
 const RowRender = props => {
@@ -38,7 +38,7 @@ const RowRender = props => {
     console.log(props)
     function handleClick(id) {
         console.log(id)
-        client.delete(companyDetailURL.replace(':id', id))
+        client.delete(jobtypeDetailURL.replace(':id', id))
         .then(res => {
             Swal.fire('Created !', 'Success .', 'success')
             .then(result => window.location.reload(false))
@@ -50,53 +50,51 @@ const RowRender = props => {
         <td>{props.name}</td>
         <td>Superadmin swift-dynamics</td>
         <td>
-        <Link to={`/company/edit/${props.id}`}>
+        <Link to={`/job_type/edit/${props.id}`}>
             <Button className='rounded-0 mr-1' color='secondary'>Edit</Button>
         </Link>
         <Button className='rounded-0 mr-1' color='danger' onClick={() => handleClick(props.id)}>Delete</Button></td>
     </tr>
 )}
 /* const RowRender = props => {
-    return FakeData.map((company,key)=>
-        <tr key={`company-${key}`}>
-            <td>{company.code}</td>
-            <td>{company.name}</td>
+    return FakeData.map((jobtype,key)=>
+        <tr key={`jobtype-${key}`}>
+            <td>{jobtype.code}</td>
+            <td>{jobtype.name}</td>
             <td>{props.user}</td>
             <td><Button color='danger'>Delete</Button></td>
         </tr>
     )
 } */    
 
-const CompanyPage = props => {
-    const [companies, setCompanies] = useState([])
+const JobTypePage = props => {
+    const [jobtype, setJobtype] = useState([])
     useEffect(() => {
-        client.get(companyURL)
+        client.get(jobtypeURL)
             .then(({ data }) => {
-                setCompanies(data.result)
+                setJobtype(data.result)
             })
             .catch(err => { })
     }, [])
     return (
         <div className='mt-4'>
-            <div className='row justify-content-between'>
                 <div className='d-flex'>
                     <div>
-                        <h2 className='h3 col-2'>Companies</h2>
+                        <h3>Job Types</h3>
                     </div>
-                </div>
             </div>
             <hr />
             <TableBase 
                 isMock={true}
-                mockData={companies}
+                mockData={jobtype}
                 keys={KEYS}
                 RowRender={RowRender}
-                createPath={'/company/create'}
+                createPath={'/job_type/create'}
                 filterOptions={filterOptions}
                 limit={LIMIT}
-                url={companyURL}
+                url={jobtypeURL}
             />
         </div>
     )
 }
-export default CompanyPage
+export default JobTypePage
