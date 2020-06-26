@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import client from 'utils/client'
 import { timesheetReportURL } from 'utils/endpoint'
+import { exportPDF } from 'utils'
 import { styles } from 'utils/formats'
 import { Table, Button } from 'reactstrap'
 import { ChevronDoubleLeft } from 'react-bootstrap-icons'
@@ -79,10 +80,6 @@ const UserExportPage = props => {
         setMonthFilter(field)
     }
 
-    const exportPDF = data => {
-        return 0
-    }
-
     const { id } = useParams()
 
     return (
@@ -111,7 +108,7 @@ const UserExportPage = props => {
                 </div>
                 <div className='col-sm-2 col-md-2'>
                     {/* <PrintButton id={`user-${id}`} label={'Save PDF'} /> */}
-                    <Button onClick={exportPDF} className='btn btn-primary'> Save PDF </Button>
+                    <Button onClick={() => exportPDF(data)} className='btn btn-primary'> Save PDF </Button>
                 </div>
                 <div className='col-sm-2 col-md-2'>
                     <Link to={`/users/${id}`}><Button className=''><ChevronDoubleLeft /> กลับ </Button></Link>
@@ -130,8 +127,8 @@ const UserExportPage = props => {
                     <RenderRow data={data.time_sheets} />
                     <tfoot>
                         <tr>
-                            <th align='center'>Grand Total</th>
-                            <td colSpan='2' align='center'>{sumallday(data.time_sheets)}</td>
+                            <td colSpan='2' align='center'><b>Grand Total</b></td>
+                            <td align='center'>{sumallday(data.time_sheets)}</td>
                         </tr>
                     </tfoot>
                 </Table>
@@ -146,13 +143,13 @@ const RenderRow = props => {
         return (
             <tbody key={`Job-${jkeys}`}>
                 <tr><th colSpan='3'>Job Name : {jobs.job.name}</th></tr>
-                <tr><th colSpan='2'>Date</th><th>Workday</th></tr>
+                <tr><td colSpan='2' align='center'><b>Date</b></td><td align='center'><b>Workday</b></td></tr>
                 {jobs.time_sheets.map((job, jkey) => {
                     return (
                         <tr key={`${jkey}-${job.code}`}><td colSpan='2' align='center'>{`${dateFormat(job.start_date)} - ${dateFormat(job.end_date)}`}</td><td align='center'>{job.day}</td></tr>
                     )
                 })}
-                <tr><th colSpan='2' align='center'>Total</th><td align='center'>{sumday(jobs.time_sheets)}</td></tr>
+                <tr><td colSpan='2' align='center'><b>Total</b></td><td align='center'>{sumday(jobs.time_sheets)}</td></tr>
             </tbody>
         )
     })
