@@ -23,6 +23,9 @@ export const groupsURL = `${endpoint}groups/`
 export const companyURL = `${endpoint}companies/`
 export const companyDetailURL = `${endpoint}companies/:id/`
 
+export const jobtypeURL = `${endpoint}job_types/`
+export const jobtypeDetailURL = `${endpoint}job_types/:id/`
+
 export const settingURL = `${endpoint}settings/`
 
 

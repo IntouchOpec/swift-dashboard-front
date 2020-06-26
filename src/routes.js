@@ -25,6 +25,9 @@ import ManpowerPlanPage from 'pages/ManpowerPlan'
 import CreateCompanyPage from 'pages/Company/Create'
 import CompanyPage from 'pages/Company'
 import EditCompanyPage from 'pages/Company/Edit'
+import CreateJobTypePage from 'pages/JobType/Create'
+import JobTypePage from 'pages/JobType'
+import EditJobTypePage from 'pages/JobType/Edit'
 
 const routes = [
     { path: '/chart/:id', component: ChartDetailPage },
@@ -38,6 +41,9 @@ const routes = [
     { path: '/company/create', component: CreateCompanyPage },
     { path: '/company/edit/:id', component: EditCompanyPage },
     { path: '/company/', component: CompanyPage },
+    { path: '/job_type/create', component: CreateCompanyPage },
+    { path: '/job_type/edit/:id', component: EditCompanyPage },
+    { path: '/job_type/', component: CompanyPage },
     // {path: '', component: Page404},
 ]
 
@@ -83,6 +89,9 @@ const Routes = props => {
                             <Route path='/company/create' component={CreateCompanyPage} />
                             <Route path='/company/edit/:id' component={EditCompanyPage} />
                             <Route path='/company' component={CompanyPage} />
+                            <Route path='/job_type/create' component={CreateJobTypePage} />
+                            <Route path='/job_type/edit/:id' component={EditJobTypePage} />
+                            <Route path='/job_type' component={JobTypePage} />
                             <Route path='/' component={OverviewPage} />
                             <Route component={Page404} />
                         </Switch>
