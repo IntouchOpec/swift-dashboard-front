@@ -14,6 +14,8 @@ export const reportsURL = `${endpoint}reports/`
 export const reportsDetailURL = `${endpoint}reports/:id/`
 export const reportsSearchDetailURL = `${endpoint}reports-search/`
 
+export const timesheetReportURL = `${endpoint}time_sheets/report/:id/`
+
 export const weathersURL = `${endpoint}weathers/`
 
 export const groupsURL = `${endpoint}groups/`
