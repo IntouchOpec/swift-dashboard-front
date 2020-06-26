@@ -25,7 +25,6 @@ export const companyDetailURL = `${endpoint}companies/:id/`
 
 export const settingURL = `${endpoint}settings/`
 
-export const companyURL = `${endpoint}companies/`
 
 export const getWeatherURL = (long, lang, days, qp) => {
     return `${weatherURL}?key=${process.env.weather_key}q=${long},${lang}&days=${days}`
