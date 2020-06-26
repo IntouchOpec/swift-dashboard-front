@@ -25,11 +25,11 @@ const OverviewPage = props => {
 
         })
 
-        client.get(settingURL).then(res => {
-            // setWeather(res.data)
-        }).catch(err => {  
+        // client.get(settingURL).then(res => {
+        //     // setWeather(res.data)
+        // }).catch(err => {  
 
-        })
+        // })
 
     }, [])
 
