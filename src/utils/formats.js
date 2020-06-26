@@ -125,5 +125,5 @@ export const getChartName = code => {
 
 
 export const dateFormat = date => {
-    return <p>{moment(date).format('DD/MM/YYYY')}</p>
+    return <p>{moment(date).format('MMM-DD-YYYY')}</p>
 }
