@@ -24,7 +24,7 @@ export const getWeatherURL = (long, lang, days, qp) => {
     return `${weatherURL}?key=${process.env.weather_key}q=${long},${lang}&days=${days}`
 }
 
-export const timeSheetURL = `${endpoint}timesheet/`
+export const timeSheetURL = `${endpoint}time_sheets/`
 
 export const jobsURL = `${endpoint}jobs/`
 

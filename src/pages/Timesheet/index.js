@@ -1,30 +1,18 @@
 import React, { useEffect, useState } from 'react'
 import TableBase from 'components/tables/TableBase'
 import client from 'utils/client'
-import { reportsURL, reportsDetailURL } from 'utils/endpoint'
+import { reportsURL, reportsDetailURL, timeSheetURL } from 'utils/endpoint'
 import { dateFormat } from 'utils/formats'
 
 const LIMIT = 10
 
-const KEYS = ['Staff', 'Job', 'Start Date', 'End Date', 'Worktime', 'Create By', 'Description']
+const KEYS = ['Staff', 'Job', 'Start Date', 'End Date', 'Worktime', 'Create By', '']
 
 const filterOptions = [
     { label: 'document_number', value: 'report_type' },
     { label: 'Staff', value: 'title' },
     { label: 'Job', value: 'status' },
     { label: 'Create By', value: 'user__first_name' },
-]
-
-const FakeData = [
-    {Sname: 'PRAMWANEE PREDAPUN', Jname: 'Mobilization Machine'},
-    {Sname: 'PRAMWANEE PREDAPUN', Jname: 'Document Control'},
-    {Sname: 'SANTI CHATNARONGCHAI', Jname: 'Piling Work'},
-    {Sname: 'SANTI CHATNARONGCHAI', Jname: 'Footing Work'},
-    {Sname: 'PRAMWANEE PREDAPUN', Jname: 'Column Work'},
-    {Sname: 'PRAMWANEE PREDAPUN', Jname: 'Fire Alarm'},
-    {Sname: 'SANTI CHATNARONGCHAI', Jname: 'Sanitary Work'},
-    {Sname: 'SANTI CHATNARONGCHAI', Jname: 'Lighting'},
-    {Sname: 'PRAMWANEE PREDAPUN', Jname: 'Earthing'},
 ]
 
 const RowRender = props => {
@@ -44,18 +32,30 @@ const RowRender = props => {
     }
     return (
         <tr>
-            <td>{props.Sname}</td>
-            <td>{props.Jname}</td>
-            <td>19/05/2020</td>
-            <td>20/05/2020</td>
-            <td>1 Day</td>
-            <td>Superadmin swift-dynamics</td>
-            <td>......</td>
+            <td>{props.staff.fullname}</td>
+            <td>{props.job.code}</td>
+            <td>{dateFormat(props.start_date)}</td>
+            <td>{dateFormat(props.end_date)}</td>
+            <td>{props.day}</td>
+            <td>{props.craeted_by.fullname}</td>
+            <td></td>
+            {/* {JSON.stringify(props)} */}
         </tr>
     )
 }
 
 const TimeSheetPage = props => {
+    const [data, setData] = useState([])
+
+    useEffect(() => {
+        client.get(`${timeSheetURL}?limit=10&page=1`)
+            .then(res => {
+                setData(res.data.result)
+            })
+            // .catch(err => {
+            //     setData(state => state)
+            // })
+    }, [])
 
     return (
         <div className='mt-4'>
@@ -69,7 +69,7 @@ const TimeSheetPage = props => {
             <hr />
             <TableBase
                 isMock={true}
-                mockData={FakeData}
+                mockData={data}
                 keys={KEYS}
                 RowRender={RowRender}
                 createPath={'/timesheet/create'}

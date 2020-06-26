@@ -22,6 +22,8 @@ const BaseDatePicker = (props) => {
                     enabled: true
                 }
             }}
+            dateFormat="MMM-dd-yyyy"
+            // dateFormat="MMM-DD-yyyy"
             {...props}
         />
         {message && <div style={{width: '100%',marginTop: '.25rem',fontSize: '80%',color: '#dc3545'}}>{message}</div>}
@@ -30,8 +32,8 @@ const BaseDatePicker = (props) => {
 
 
 const DateRange = props => {
-    const { setError, clearError } = useFormContext()
-    const { setValue, errors, defualtValues, DATE_RANGE_KEY } = props
+    // const { setError, clearError } = useFormContext()
+    const { setValue, errors, defualtValues, DATE_RANGE_KEY, setError, clearError } = props
     let startDateInit
     let endDateInit
     if (defualtValues.start) {
@@ -44,14 +46,15 @@ const DateRange = props => {
     const [endDate, setLocalEndDate] = useState(endDateInit)
 
     useEffect(() => {
-        if ((startDate && endDate) || (!startDate && !endDate)) {
-            clearError(props.start.key, props.end.key)
-        } else if (startDate && !endDate) {
-            setError(props.end.key, 'required', `${props.end.name} is required!`)
-        } else if (!startDate && endDate) {
-            setError(props.start.key, 'required', `${props.start.name} is required!`)
-        }
-    }, [startDate, endDate, clearError, setError, errors])
+        console.log((startDate && endDate) || (!startDate && !endDate) && true)
+        // if ((startDate && endDate) || (!startDate && !endDate)) {
+        //     clearError(props.start.key, props.end.key)
+        // } else if (startDate && !endDate) {
+        //     setError(props.end.key, 'required', `${props.end.name} is required!`)
+        // } else if (!startDate && endDate) {
+        //     setError(props.start.key, 'required', `${props.start.name} is required!`)
+        // }
+    }, [startDate, endDate, errors])
 
     const onSetStart = date => {
         setLocalStartDate(date)
@@ -62,8 +65,13 @@ const DateRange = props => {
         setLocalEndDate(date)
         setValue(props.end.name, date, true)
     }
+    const { start, end, col, register } = props
+
+    useEffect(() => {
+        register(props.start.key)
+        register(props.end.key)
+    }, [])
     
-    const { start, end, col } = props
     return (
         <>
             <div className={`col-${col}`}>
