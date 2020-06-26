@@ -84,7 +84,7 @@ $gray:#e7e6e6;
 }
 
 body{
-	font-family: 'Prompt', sans-serif;
+	// font-family: 'Prompt', sans-serif;
 	background-color: #F5F5F5;
 	// height: 100%;
 }
@@ -665,4 +665,9 @@ select {
   background-clip: padding-box;
   border: 1px solid #ced4da;
   transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+.important {
+  color: red;
+  font-size: 1em;
 }

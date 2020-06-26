@@ -14,13 +14,20 @@ import CreateTimeSheetPage from 'pages/Timesheet/Create'
 import TimeSheetDetailPage from 'pages/Timesheet/Detail'
 import JobPage from 'pages/Job'
 import CreateJobPage from 'pages/Job/Create'
-import UserExportPage from 'pages/User/Export'
-import UserDetailPage from 'pages/User/Detail'
 import ManageUserPage from 'pages/User'
 import CreateUserPage from 'pages/User/Create'
+import EditUserPage from 'pages/User/Edit'
+import UserDetailPage from 'pages/User/Detail'
+import UserExportPage from 'pages/User/Export'
 import SettingPage from 'pages/Setting'
 import SCurvePage from 'pages/SCurve'
 import ManpowerPlanPage from 'pages/ManpowerPlan'
+import CreateCompanyPage from 'pages/Company/Create'
+import CompanyPage from 'pages/Company'
+import EditCompanyPage from 'pages/Company/Edit'
+import CreateJobTypePage from 'pages/JobType/Create'
+import JobTypePage from 'pages/JobType'
+import EditJobTypePage from 'pages/JobType/Edit'
 
 const routes = [
     { path: '/chart/:id', component: ChartDetailPage },
@@ -31,6 +38,12 @@ const routes = [
     { path: '/users/', component: ManageUserPage },
     { path: '/manpower_plan/', component: ManpowerPlanPage },
     { path: '/', component: OverviewPage },
+    { path: '/company/create', component: CreateCompanyPage },
+    { path: '/company/edit/:id', component: EditCompanyPage },
+    { path: '/company/', component: CompanyPage },
+    { path: '/job_type/create', component: CreateCompanyPage },
+    { path: '/job_type/edit/:id', component: EditCompanyPage },
+    { path: '/job_type/', component: CompanyPage },
     // {path: '', component: Page404},
 ]
 
@@ -64,6 +77,7 @@ const Routes = props => {
                             <Route path='/charts' component={ManageChartPage} />
                             <Route path='/jobs/create' component={CreateJobPage} />
                             <Route path='/jobs' component={JobPage} />
+                            <Route path='/user/:id/edit' component={EditUserPage} />
                             <Route path='/user/:id' component={UserDetailPage} />
                             <Route path='/users/export/:id' component={UserExportPage} />
                             <Route path='/users/create' component={CreateUserPage} />
@@ -72,6 +86,12 @@ const Routes = props => {
                             <Route path='/setting' component={SettingPage} />
                             <Route path='/s_curve' component={SCurvePage} />
                             <Route path='/manpower_plan' component={ManpowerPlanPage} />
+                            <Route path='/company/create' component={CreateCompanyPage} />
+                            <Route path='/company/edit/:id' component={EditCompanyPage} />
+                            <Route path='/company' component={CompanyPage} />
+                            <Route path='/job_type/create' component={CreateJobTypePage} />
+                            <Route path='/job_type/edit/:id' component={EditJobTypePage} />
+                            <Route path='/job_type' component={JobTypePage} />
                             <Route path='/' component={OverviewPage} />
                             <Route component={Page404} />
                         </Switch>
