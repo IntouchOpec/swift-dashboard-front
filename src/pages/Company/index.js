@@ -36,7 +36,7 @@ const RowRender = props => {
     <tr>
         <td>{props.code}</td>
         <td>{props.name}</td>
-        <td>{props.user}</td>
+        <td>Superadmin swift-dynamics</td>
         <td>
         <Link to={`/company/edit/${props.id}`}>
             <Button className='rounded-0 mr-1' color='secondary'>edit</Button>
