@@ -20,6 +20,9 @@ export const weathersURL = `${endpoint}weathers/`
 
 export const groupsURL = `${endpoint}groups/`
 
+export const companyURL = `${endpoint}companies/`
+export const companyDetailURL = `${endpoint}companies/:id/`
+
 export const settingURL = `${endpoint}settings/`
 
 export const companyURL = `${endpoint}companies/`
