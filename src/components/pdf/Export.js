@@ -53,26 +53,13 @@ var document = {
                 ]
             },
             style: 'subtitle',
-            layout: 'noBorders'
+            layout: 'noBorders',
         },
-        {
-            table: {
-                widths: [160, 160, 160],
-                body: [
-                ]
-            },
-            style: 'body',
-        },
-        {
-            text: [
-                { text: 'Signature    ........................................................................\n', style: 'signature1' },
-                { text: ' (................................................................)   ', style: 'signature2' }
-            ],
-            style: 'signature',
-        },
+
     ],
     pageBreakBefore: function (currentNode, followingNodesOnPage, nodesOnNextPage, previousNodesOnPage) {
-        return currentNode.headlineLevel === 1 && followingNodesOnPage.length === 0;
+        console.log(currentNode)
+        return currentNode.headlineLevel === 1 && currentNode.pageNumbers.length > 1;
     },
     defaultStyle: {
         font: 'THSarabunNew'
@@ -126,17 +113,37 @@ var document = {
     },
 };
 
+const dataTable = data => {
+    let body = []
+    body.push([{ text: `${data.job.job_type.code} : ${data.job.name}`, style: 'tableHeader', alignment: 'left', colSpan: 3 }, {}, {}])
+    body.push([{ text: 'Date', style: 'tableHeader', alignment: 'center', colSpan: 2 }, {}, { text: 'Workday', style: 'tableHeader', alignment: 'center' }])
+    data.time_sheets.map((job, jkey) => {
+        body.push([{ text: `${dateFormat(job.start_date)} - ${dateFormat(job.end_date)}`, style: '', colSpan: 2, alignment: 'center' }, {}, { text: job.day, style: '', alignment: 'center' }])
+    })
+    body.push([{ text: 'Total', style: 'tableHeader', alignment: 'center', colSpan: 2 }, {}, { text: sumday(data.time_sheets), style: '', alignment: 'center' }])
+    return body
+}
+
 const conVTopdf = (data, monthfilter) => {
     document.content[1].table.body[0][1] = data.user.fullname
     document.content[1].table.body[0][3] = monthfilter.label
-    document.content[2].table.body = []
+    document.content.splice(2)
     data.time_sheets.map((jobs, jkeys) => {
-        document.content[2].table.body.push([{ text: `${jobs.job.job_type.code} : ${jobs.job.name}`, headlineLevel: 0, style: 'tableHeader', alignment: 'left', colSpan: 3 }, {}, {}])
-        document.content[2].table.body.push([{ text: 'Date', style: 'tableHeader', alignment: 'center', colSpan: 2 }, {}, { text: 'Workday', style: 'tableHeader', alignment: 'center' }])
-        jobs.time_sheets.map((job, tkey) => {
-            document.content[2].table.body.push([{ text: `${dateFormat(job.start_date)} - ${dateFormat(job.end_date)}`, style: '', colSpan: 2, alignment: 'center' }, {}, { text: job.day, style: '', alignment: 'center' }])
+        document.content.push({
+            table: {
+                widths: [160, 160, 160],
+                body: dataTable(jobs)
+            },
+            style: 'body',
+            headlineLevel: 1
         })
-        document.content[2].table.body.push([{ text: 'Total', style: 'tableHeader', alignment: 'center', colSpan: 2 }, {}, { text: sumday(jobs.time_sheets), style: '', alignment: 'center' }])
+    })
+    document.content.push({
+        text: [
+            { text: 'Signature    ........................................................................\n', style: 'signature1' },
+            { text: ' (................................................................)   ', style: 'signature2' }
+        ],
+        style: 'signature',
     })
 }
 
