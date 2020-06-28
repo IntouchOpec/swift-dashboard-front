@@ -67,6 +67,7 @@
     "reactstrap": "^8.4.1",
     "read-excel-file": "^4.0.6",
     "recharts": "^1.8.5",
-    "sweetalert2": "^9.10.12"
+    "sweetalert2": "^9.10.12",
+    "terser-webpack-plugin": "^3.0.6"
   }
 }

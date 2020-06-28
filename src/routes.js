@@ -68,7 +68,6 @@ const Routes = props => {
                 if (context.auth.auth) {
                     return <Layout user={context.auth}>
                         <Switch>
-                            {/* {loginRoutes()} */}
                             <Route path='/timesheet/create' component={CreateTimeSheetPage} />
                             <Route path='/timesheet/:id' component={TimeSheetDetailPage} />
                             <Route path='/timesheet' component={TimeSheetPage} />
