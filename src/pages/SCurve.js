@@ -1,13 +1,14 @@
-import React, { useEffect, useState } from 'react'
-import SCurve from 'components/charts/SCurve'
-import client from 'utils/client'
-import { Table, Card } from 'reactstrap'
-import { reportsSearchDetailURL } from 'utils/endpoint'
-import CardChart from 'components/charts/CardChart'
-import DatePicker from 'react-datepicker'
-import moment from 'moment'
-import Select from 'react-select'
-import { dateFormat } from 'utils/formats'
+import CardChart from 'components/charts/CardChart';
+import moment from 'moment';
+import React, { Suspense, useEffect, useState } from 'react';
+import DatePicker from 'react-datepicker';
+import Select from 'react-select';
+import { Card, Table } from 'reactstrap';
+// import SCurve from 'components/charts/SCurve'
+import client from 'utils/client';
+import { reportsSearchDetailURL } from 'utils/endpoint';
+import { dateFormat } from 'utils/formats';
+const SCurve = React.lazy(() => import('components/charts/SCurve'))
 
 
 const customStyles = {
@@ -80,7 +81,11 @@ const SCurvePage = props => {
                     />
                 </div>
             </div>
-            {data && <CardChart className='mt-3 card' rows={data.source} RenderChildren={SCurve} name='SCurve' />}
+            <Suspense fallback={<div>Loading...</div>}>
+
+                {data && <CardChart className='mt-3 card' rows={data.source} RenderChildren={SCurve} name='SCurve' />}
+            </Suspense>
+
             <Card>
                 {data && <Table striped>
                     <tbody>

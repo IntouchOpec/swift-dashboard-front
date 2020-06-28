@@ -2,15 +2,21 @@ const webpack = require("webpack");
 const path = require("path");
 require("@babel/polyfill");
 require('dotenv').config()
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const extractSass = new ExtractTextPlugin({
+  filename: "./css/main.css"
+});
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
   entry: ["@babel/polyfill", "./index.js"],
   output: {
-      filename: "bundle.js",
-      path: path.join(__dirname, "./build"),
-      publicPath: "/"
+    filename: "bundle.js",
+    path: path.join(__dirname, "./build"),
+    publicPath: "/"
   },
   module: {
+    // strictExportPresence: true,
     rules: [
       {
         test: /\.(js|jsx?)$/, ///\.(js|jsx)$/
@@ -36,30 +42,48 @@ module.exports = {
         // exclude: /node_modules/,
         use: ["style-loader", "css-loader"]
       },
-      // {
-      //   test: /\.svg$/,
-      //   loader: "svg-inline-loader"
-      // },
       {
         test: /\.scss$/,
         use: [
-          "style-loader", // creates style nodes from JS strings
-          "css-loader", // translates CSS into CommonJS
-          "sass-loader" // compiles Sass to CSS, using Node Sass by default
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[name].blocks.css',
+            }
+          },
+          {
+            loader: 'extract-loader'
+          },
+          {
+            loader: 'css-loader?-url'
+          },
+          {
+            loader: 'postcss-loader'
+          },
+          {
+            loader: 'sass-loader'
+          }
         ]
       },
       {
-        test: /\.(png|jpg|gif)$/i,
-        use: {
-          loader: "url-loader",
-          options: {
-            mimetype: 'image/png',
-          },
-        },
+        test: /\.(jpe?g|png|gif|svg)$/i,
+        use: [
+          'file-loader?name=[name].[ext]&publicPath=./&outputPath=./images/',
+          'image-webpack-loader'
+        ]
       },
+      // {
+      //   test: /\.(png|jpg|gif)$/i,
+      //   use: {
+      //     loader: "url-loader",
+      //     options: {
+      //       mimetype: 'image/png',
+      //     },
+      //   },
+      // },
       {
         test: /\.html$/,
-        use: [ {
+        use: [{
           loader: "html-loader",
           options: {
             minimize: true

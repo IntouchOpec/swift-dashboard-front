@@ -1,13 +1,15 @@
-import React, { useState, useEffect } from 'react'
-import client from 'utils/client'
-import { reportsSearchDetailURL } from 'utils/endpoint'
-import CardChart from 'components/charts/CardChart'
-import ManpowerPlan from 'components/charts/ManpowerPlan'
-import DatePicker from 'react-datepicker'
-import moment from 'moment'
-import { dateFormat } from 'utils/formats'
-import { Card, Table } from 'reactstrap'
-import Select from 'react-select'
+import CardChart from 'components/charts/CardChart';
+import moment from 'moment';
+import React, { Suspense, useEffect, useState } from 'react';
+// import ManpowerPlan from 'components/charts/ManpowerPlan'
+import DatePicker from 'react-datepicker';
+import Select from 'react-select';
+import { Card, Table } from 'reactstrap';
+import client from 'utils/client';
+import { reportsSearchDetailURL } from 'utils/endpoint';
+import { dateFormat } from 'utils/formats';
+const ManpowerPlan = React.lazy(() => import('components/charts/ManpowerPlan'))
+
 
 const customStyles = {
     control: (base, state) => ({
@@ -77,8 +79,9 @@ const ManpowerCostPage = props => {
                     />
                 </div>
             </div>
-
-           {data && <CardChart rows={data.source} className='mt-3 card' RenderChildren={ManpowerPlan} name='ManpowerPlan' />}
+            <Suspense fallback={<div>Loading...</div>}>
+                {data && <CardChart rows={data.source} className='mt-3 card' RenderChildren={ManpowerPlan} name='ManpowerPlan' />}
+            </Suspense>Î
             <Card>
                 {data && <Table striped>
                     <tbody>
