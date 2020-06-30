@@ -59,7 +59,7 @@ var document = {
     ],
     pageBreakBefore: function (currentNode, followingNodesOnPage, nodesOnNextPage, previousNodesOnPage) {
         console.log(currentNode)
-        return currentNode.headlineLevel === 1 && currentNode.pageNumbers.length > 1;
+        return previousNodesOnPage.length > 0 && currentNode.pageNumbers.length > 1;
     },
     defaultStyle: {
         font: 'THSarabunNew'
