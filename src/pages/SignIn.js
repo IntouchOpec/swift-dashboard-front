@@ -56,12 +56,8 @@ const SignIn = props => {
                             </div>
                         </Card>
                         <div className='m-5'>
-                            <h6>Don't have an account?</h6>
-                            <Link to=''>Sign up</Link>
-                        </div>
-                        <div className='m-5'>
                             <h6>Forgot your password?</h6>
-                            <Link to=''>Password reset instructions</Link>
+                            <Link to='/forgotpassword'>Password reset instructions</Link>
                         </div>
                     </div>
                     <div className='right-pane d-none d-lg-block col-8 p-0 m-0'>

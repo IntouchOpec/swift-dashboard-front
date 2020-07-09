@@ -38,3 +38,7 @@ export const timeSheetURL = `${endpoint}time_sheets/`
 export const jobsURL = `${endpoint}jobs/`
 
 export const jobTypesURL = `${endpoint}job_types/`
+
+export const reSetPassURL = `${endpoint}reset-password/`
+
+export const changePassURL = `${endpoint}reset-password/`

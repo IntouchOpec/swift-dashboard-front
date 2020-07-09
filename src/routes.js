@@ -5,6 +5,8 @@ import { Spinner } from 'reactstrap'
 import Layout from 'components/layouts'
 import Page404 from 'pages/Page404'
 import SignIn from 'pages/SignIn'
+import ResetPass from 'pages/ResetPass'
+import ForgotPass from 'pages/ForgotPass'
 import OverviewPage from 'pages/Overview'
 import ManageChartPage from 'pages/ManageChart'
 import CreateChartPage from 'pages/ManageChart/Create'
@@ -81,6 +83,8 @@ const Routes = props => {
                             <Route path='/users/export/:id' component={UserExportPage} />
                             <Route path='/users/create' component={CreateUserPage} />
                             <Route path='/users' component={ManageUserPage} />
+                            <Route path='/reset' component={ResetPass} />
+                            <Route path='/forgotpassword' component={ForgotPass} />
                             <Route path='/setting' component={SettingPage} />
                             <Route path='/setting' component={SettingPage} />
                             <Route path='/s_curve' component={SCurvePage} />
@@ -96,7 +100,13 @@ const Routes = props => {
                         </Switch>
                     </Layout>
                 }
-                return (<SignIn dispatch={context.dispatch} />
+                return (
+                    <Switch>
+                        <Route path='/reset' component={ResetPass} />
+                        <Route path='/forgotpassword' component={ForgotPass} />
+                        <Route path='/' render={() => <SignIn dispatch={context.dispatch} />} />
+                        
+                    </Switch>
                 )
             }}</AuthContext.Consumer>
         </Router>
