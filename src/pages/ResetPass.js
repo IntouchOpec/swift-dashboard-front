@@ -12,11 +12,11 @@ const ResetPass = props => {
 
     const submitReset = (data) => {
         console.log(data)
-        let pass = {password: data.password}
+        let pass = { password: data.password }
         data.password !== data.cpassword
-        ?
-        setError('cpassword', 'manual', 'Password don\'t math')
-        :
+            ?
+            setError('cpassword', 'manual', 'Password don\'t math')
+            :
             client.post(changePassURL, pass)
                 .then(res => {
                     Swal.fire('Success !', 'Success .', 'success')
