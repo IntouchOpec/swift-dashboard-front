@@ -8,15 +8,15 @@ import { groupsURL, companyURL } from 'utils/endpoint'
 
 const UserFrom = props => {
 
-    const { submitForm, mode, defaultValues,groups, companys } = props
+    const { submitForm, mode, defaultValues, groups, companys } = props
 
-   
+
     // conse
     const methods = useForm({
         // mode: 'onChnage',
         defaultValues
     })
-    
+
     const { handleSubmit, errors, register, setValue, setError, reset } = methods
 
     useEffect(() => {
@@ -26,10 +26,12 @@ const UserFrom = props => {
     }, [props.errors])
 
     useEffect(() => {
-            // console.log(defaultValues.group)
-            // setValue('group', defaultValues.group)
-            // setValue('company', defaultValues.company)
+        // console.log(defaultValues.group)
+        // setValue('group', defaultValues.group)
+        // setValue('company', defaultValues.company)
     }, [])
+
+    console.log(groups)
 
     return (
         <div className='mt-4'>

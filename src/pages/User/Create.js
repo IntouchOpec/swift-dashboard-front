@@ -16,7 +16,7 @@ const CreateUserPage = props => {
     useEffect(() => {
         client.get(groupsURL)
             .then(({ data }) => {
-                setGroups(data)
+                setGroups(data.result)
             })
             .catch(err => { })
         client.get(companyURL)

@@ -48,3 +48,5 @@ export const resetPasswordVerifyTokenURL = `${endpoint}reset-password/verify-tok
 export const groupsURL = `${endpoint}groups/`
 export const groupsDetailUR = `${endpoint}groups/:id/`
 export const PermissionURL = `${endpoint}permissions/`
+
+export const CamerasURL = `${endpoint}cameras/`
