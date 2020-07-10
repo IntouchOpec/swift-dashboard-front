@@ -9,7 +9,7 @@ import SwitchButton from 'bootstrap-switch-button-react'
 
 const LIMIT = 10
 
-const KEYS = ['-','active', 'report_type','path','user','created_at','updated_at',]
+const KEYS = ['-','active', 'Report type','path','user','created at','updated at',]
 
 const filterOptions = [
     {label: 'document_number', value: 'report_type'},

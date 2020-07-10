@@ -77,7 +77,7 @@ const PermissionPage = props => {
             </div>
             <hr />
             <TableBase
-                isMock={true}
+                isMock={false}
                 mockData={data}
                 keys={KEYS}
                 RowRender={RowRender}

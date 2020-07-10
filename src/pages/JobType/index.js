@@ -9,7 +9,7 @@ import { useHistory } from 'react-router-dom'
 
 const LIMIT = 10
 
-const KEYS = ['Job Type Code','Job Type Name', 'Create By','-']
+const KEYS = ['Job Type Code','Job Type Name', 'Created By','-']
 
 const filterOptions = [
     {label: 'Job Type Code', value: 'jobtype_code'},

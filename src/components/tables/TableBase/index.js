@@ -10,7 +10,7 @@ const makePaginationList = (count, limit) => {
         page_list.push({value: 1, label: `Page 1`})
         return page_list
     }
-    for (let index = 1; index <= count / 10; index++) {
+    for (let index = 1; index <= Math.ceil(count / 10); index++) {
         page_list.push({value: index, label: `Page ${index}`})
     }
     return page_list
@@ -42,6 +42,7 @@ const TableBase = props => {
             setPages(makePaginationList(res.data.count, limit))
             setPage({value: 1, label: 'Page 1'})
             setRows(res.data.result)
+            console.log(res.data.result)
             setLoading(false)
         })
     }, [])

@@ -65,7 +65,7 @@ const RowRender = props => {
         </tr>
     )
 }
-const KEYS = ['-', 'active', 'username', 'role', 'email', 'full_name', 'created_by', 'last_login', 'created_at', 'updated_at',]
+const KEYS = ['-', 'active', 'username', 'role', 'email', 'full name', 'created by', 'last login', 'created at', 'updated at',]
 
 const UserPage = props => {
     const onChangeFile = event => {
