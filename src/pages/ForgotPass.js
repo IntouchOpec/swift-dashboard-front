@@ -5,9 +5,11 @@ import { Button, Card } from 'reactstrap'
 import client from 'utils/client'
 import Swal from 'sweetalert2'
 import { reSetPassURL } from 'utils/endpoint'
+import { useHistory } from 'react-router-dom'
+
 
 const ForgotPass = props => {
-
+    const history = useHistory()
     const submitForgot = (data) => {
         client.post(reSetPassURL, data)
             .then(res => {

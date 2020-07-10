@@ -32,7 +32,8 @@ const ResetPass = props => {
                         .then(result => history.push('/'))
                 })
                 .catch(error => {
-                    setErrors(error.response.data)
+                    setError('cpassword', 'manual', error.response.data.password[0])
+                    // setErrors(error.response.data)
                 })
     }
 
