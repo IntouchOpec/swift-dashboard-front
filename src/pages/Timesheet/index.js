@@ -3,10 +3,12 @@ import TableBase from 'components/tables/TableBase'
 import client from 'utils/client'
 import { reportsURL, reportsDetailURL, timeSheetURL } from 'utils/endpoint'
 import { dateFormat } from 'utils/formats'
+import { Link } from 'react-router-dom'
+import { Button } from 'reactstrap'
 
 const LIMIT = 10
 
-const KEYS = ['Staff', 'Job', 'Start Date', 'End Date', 'Worktime', 'Create By', '']
+const KEYS = ['Staff', 'Job', 'Start Date', 'End Date', 'Worktime', 'Created By', 'Edit']
 
 const filterOptions = [
     { label: 'document_number', value: 'report_type' },
@@ -21,6 +23,7 @@ const RowRender = props => {
     useEffect(() => {
         setActive(props.active)
     }, [props.id])
+    console.log(props)
 
     const onActiveHanlder = () => {
         client.patch(`${reportsDetailURL.replace(':id', props.id)}`, { active: !active })
@@ -38,7 +41,7 @@ const RowRender = props => {
             <td>{dateFormat(props.end_date)}</td>
             <td>{props.day}</td>
             <td>{props.craeted_by.fullname}</td>
-            <td></td>
+            <td><Link to={`/timesheet/edit/${props.id}`}><Button>Edit</Button></Link></td>
             {/* {JSON.stringify(props)} */}
         </tr>
     )
@@ -68,14 +71,13 @@ const TimeSheetPage = props => {
             </div>
             <hr />
             <TableBase
-                isMock={true}
-                mockData={data}
+                isMock={false}
                 keys={KEYS}
                 RowRender={RowRender}
                 createPath={'/timesheet/create'}
                 filterOptions={filterOptions}
                 limit={LIMIT}
-                url={reportsURL}
+                url={timeSheetURL}
             />
         </div>
     )
