@@ -2,11 +2,6 @@ const webpack = require("webpack");
 const path = require("path");
 require("@babel/polyfill");
 require('dotenv').config()
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
-const extractSass = new ExtractTextPlugin({
-  filename: "./css/main.css"
-});
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
   entry: ["@babel/polyfill", "./index.js"],
@@ -16,10 +11,9 @@ module.exports = {
     publicPath: "/"
   },
   module: {
-    // strictExportPresence: true,
     rules: [
       {
-        test: /\.(js|jsx?)$/, ///\.(js|jsx)$/
+        test: /\.(jsx?)$/, ///\.(js|jsx)$/
         exclude: [/node_modules/],
         loader: "babel-loader",
         options: {
@@ -42,45 +36,27 @@ module.exports = {
         // exclude: /node_modules/,
         use: ["style-loader", "css-loader"]
       },
+      // {
+      //   test: /\.svg$/,
+      //   loader: "svg-inline-loader"
+      // },
       {
         test: /\.scss$/,
         use: [
-          {
-            loader: 'file-loader',
-            options: {
-              name: '[name].blocks.css',
-            }
-          },
-          {
-            loader: 'extract-loader'
-          },
-          {
-            loader: 'css-loader?-url'
-          },
-          {
-            loader: 'postcss-loader'
-          },
-          {
-            loader: 'sass-loader'
-          }
+          "style-loader", // creates style nodes from JS strings
+          "css-loader", // translates CSS into CommonJS
+          "sass-loader" // compiles Sass to CSS, using Node Sass by default
         ]
       },
       {
-        test: /\.(jpe?g|png|gif|svg)$/i,
-        use: [
-          'file-loader?name=[name].[ext]&publicPath=./&outputPath=./images/',
-          'image-webpack-loader'
-        ]
+        test: /\.(png|jpg|gif)$/i,
+        use: {
+          loader: "url-loader",
+          options: {
+            mimetype: 'image/png',
+          },
+        },
       },
-      // {
-      //   test: /\.(png|jpg|gif)$/i,
-      //   use: {
-      //     loader: "url-loader",
-      //     options: {
-      //       mimetype: 'image/png',
-      //     },
-      //   },
-      // },
       {
         test: /\.html$/,
         use: [{
@@ -93,15 +69,13 @@ module.exports = {
     ]
   },
   resolve: {
-    modules: ["node_modules", path.resolve(__dirname, "./src")]
+    modules: ["node_modules", path.resolve(__dirname, "./src"), path.join(__dirname, "js/helpers"),]
   },
   plugins: [
     new webpack.DefinePlugin({
-      // ...JSON.stringify(process.env),
-      "process.env.google_map_key": JSON.stringify(process.env.google_map_key),
+      "process.env.HOST": JSON.stringify(process.env.HOST),
       "process.env.client_id": JSON.stringify(process.env.client_id),
       "process.env.client_secret": JSON.stringify(process.env.client_secret),
-      "process.env.HOST": JSON.stringify(process.env.HOST),
       "process.env.NODE_ENV": JSON.stringify(process.env.NODE_ENV)
     }),
     new webpack.ProgressPlugin()

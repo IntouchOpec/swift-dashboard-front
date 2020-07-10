@@ -30,6 +30,9 @@ import EditCompanyPage from 'pages/Company/Edit'
 import CreateJobTypePage from 'pages/JobType/Create'
 import JobTypePage from 'pages/JobType'
 import EditJobTypePage from 'pages/JobType/Edit'
+import CameraPage from 'pages/Cameras'
+import PermissionPage from 'pages/Permissions'
+import CreatePermissionPage from 'pages/Permissions/Create'
 
 const routes = [
     { path: '/chart/:id', component: ChartDetailPage },
@@ -92,6 +95,10 @@ const Routes = props => {
                             <Route path='/company/create' component={CreateCompanyPage} />
                             <Route path='/company/edit/:id' component={EditCompanyPage} />
                             <Route path='/company' component={CompanyPage} />
+                            <Route path='/cameras' component={CameraPage} />
+                            <Route path='/permissions/create' component={CreatePermissionPage} />
+                            <Route path='/permissions' component={PermissionPage} />
+                            
                             <Route path='/job_type/create' component={CreateJobTypePage} />
                             <Route path='/job_type/edit/:id' component={EditJobTypePage} />
                             <Route path='/job_type' component={JobTypePage} />
@@ -102,10 +109,10 @@ const Routes = props => {
                 }
                 return (
                     <Switch>
-                        <Route path='/reset' component={ResetPass} />
+                        <Route path='/reset/:token' component={ResetPass} />
                         <Route path='/forgotpassword' component={ForgotPass} />
                         <Route path='/' render={() => <SignIn dispatch={context.dispatch} />} />
-                        
+
                     </Switch>
                 )
             }}</AuthContext.Consumer>

@@ -18,7 +18,7 @@ export const timesheetReportURL = `${endpoint}time_sheets/report/:id/`
 
 export const weathersURL = `${endpoint}weathers/`
 
-export const groupsURL = `${endpoint}groups/`
+// export const groupsURL = `${endpoint}groups/`
 
 export const companyURL = `${endpoint}companies/`
 export const companyDetailURL = `${endpoint}companies/:id/`
@@ -41,4 +41,10 @@ export const jobTypesURL = `${endpoint}job_types/`
 
 export const reSetPassURL = `${endpoint}reset-password/`
 
-export const changePassURL = `${endpoint}reset-password/`
+export const changePassURL = `${endpoint}reset-password/confirm/`
+
+export const resetPasswordVerifyTokenURL = `${endpoint}reset-password/verify-token/`
+
+export const groupsURL = `${endpoint}groups/`
+export const groupsDetailUR = `${endpoint}groups/:id/`
+export const PermissionURL = `${endpoint}permissions/`

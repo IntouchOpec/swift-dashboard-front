@@ -22,6 +22,8 @@ const menus = [
     { admin: true, path: '/users', name: 'Users' },
     { admin: true, path: '/jobs', name: 'Job' },
     { admin: true, path: '/charts', name: 'Charts' },
+    { admin: true, path: '/permissions', name: 'Permissions' },
+    { admin: true, path: '/cameras', name: 'Cameras' },
     // { path: '/setting', name: 'Setting' },
 ]
 

@@ -4,15 +4,24 @@ import InputField from 'components/forms/InputField'
 import { Button, Card } from 'reactstrap'
 import client from 'utils/client'
 import Swal from 'sweetalert2'
-import { changePassURL } from 'utils/endpoint'
+import { changePassURL, resetPasswordVerifyTokenURL } from 'utils/endpoint'
+import { useParams, useHistory, Link } from 'react-router-dom'
 
 const ResetPass = props => {
+    const { token } = useParams()
+    const history = useHistory()
 
     const { register, handleSubmit, setValue, errors, setError } = useForm()
-
+    useEffect(() => {
+        client.post(resetPasswordVerifyTokenURL, { token }).then(res => {
+            console.log(res)
+        }).catch(error => {
+            Swal.fire('Success !', 'Success .', 'success')
+                .then(result => history.push('/'))
+        })
+    }, [])
     const submitReset = (data) => {
-        console.log(data)
-        let pass = { password: data.password }
+        let pass = { password: data.password, token }
         data.password !== data.cpassword
             ?
             setError('cpassword', 'manual', 'Password don\'t math')
