@@ -34,6 +34,7 @@ export const getWeatherURL = (long, lang, days, qp) => {
 }
 
 export const timeSheetURL = `${endpoint}time_sheets/`
+export const timeSheetDetailURL = `${endpoint}time_sheets/:id/`
 
 export const jobsURL = `${endpoint}jobs/`
 

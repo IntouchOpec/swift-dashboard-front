@@ -9,7 +9,7 @@ import { useHistory } from 'react-router-dom'
 
 const LIMIT = 10
 
-const KEYS = ['Company Code','Company Name', 'Create By','-']
+const KEYS = ['Company Code','Company Name', 'Created By','-']
 
 const filterOptions = [
     {label: 'Company Code', value: 'code'},
@@ -68,14 +68,6 @@ const RowRender = props => {
 } */    
 
 const CompanyPage = props => {
-    const [companies, setCompanies] = useState([])
-    useEffect(() => {
-        client.get(companyURL)
-            .then(({ data }) => {
-                setCompanies(data.result)
-            })
-            .catch(err => { })
-    }, [])
     return (
         <div className='mt-4'>
             <div className='row justify-content-between'>
@@ -87,8 +79,7 @@ const CompanyPage = props => {
             </div>
             <hr />
             <TableBase 
-                isMock={true}
-                mockData={companies}
+                isMock={false}
                 keys={KEYS}
                 RowRender={RowRender}
                 createPath={'/company/create'}

@@ -14,6 +14,7 @@ import ChartDetailPage from 'pages/ManageChart/Detail'
 import TimeSheetPage from 'pages/Timesheet'
 import CreateTimeSheetPage from 'pages/Timesheet/Create'
 import TimeSheetDetailPage from 'pages/Timesheet/Detail'
+import EditTimeSheetPage from 'pages/Timesheet/Edit'
 import JobPage from 'pages/Job'
 import CreateJobPage from 'pages/Job/Create'
 import ManageUserPage from 'pages/User'
@@ -73,6 +74,7 @@ const Routes = props => {
                 if (context.auth.auth) {
                     return <Layout user={context.auth}>
                         <Switch>
+                            <Route path='/timesheet/edit/:id' component={EditTimeSheetPage} />
                             <Route path='/timesheet/create' component={CreateTimeSheetPage} />
                             <Route path='/timesheet/:id' component={TimeSheetDetailPage} />
                             <Route path='/timesheet' component={TimeSheetPage} />
