@@ -72,6 +72,7 @@ const UserPage = props => {
         readXlsxFile(event.target.files[0])
             .then(result => {
                 let data = []
+                console.log(result)
                 result.map((value, index) => {
                     if (index !== 0) {
                         data.push({
@@ -82,6 +83,7 @@ const UserPage = props => {
                             phone: value[8],
                             username: value[9],
                             prefix: value[2],
+                            company__name: value[12],
                             password: '1234'
                         })
                     }

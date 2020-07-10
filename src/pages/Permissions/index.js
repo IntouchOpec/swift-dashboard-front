@@ -43,7 +43,7 @@ const RowRender = props => {
             <td>{props.id}</td>
             <td>{props.name}</td>
             <td>
-                <Link to={`/permissions/edit/${props.id}`}>
+                <Link to={`/permissions/${props.id}/edit`}>
                     <Button className='rounded-0 mr-1' color='secondary'>Edit</Button>
                 </Link>
                 <Button className='rounded-0 mr-1' color='danger' onClick={() => handleClick(props.id)}>Delete</Button>

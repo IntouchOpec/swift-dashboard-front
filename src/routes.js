@@ -33,7 +33,7 @@ import EditJobTypePage from 'pages/JobType/Edit'
 import CameraPage from 'pages/Cameras'
 import PermissionPage from 'pages/Permissions'
 import CreatePermissionPage from 'pages/Permissions/Create'
-
+import EditPermissionPage from 'pages/Permissions/Edit'
 const routes = [
     { path: '/chart/:id', component: ChartDetailPage },
     { path: '/charts/create', component: CreateChartPage },
@@ -96,9 +96,9 @@ const Routes = props => {
                             <Route path='/company/edit/:id' component={EditCompanyPage} />
                             <Route path='/company' component={CompanyPage} />
                             <Route path='/cameras' component={CameraPage} />
+                            <Route path='/permissions/:id/edit' component={EditPermissionPage} />
                             <Route path='/permissions/create' component={CreatePermissionPage} />
                             <Route path='/permissions' component={PermissionPage} />
-                            
                             <Route path='/job_type/create' component={CreateJobTypePage} />
                             <Route path='/job_type/edit/:id' component={EditJobTypePage} />
                             <Route path='/job_type' component={JobTypePage} />

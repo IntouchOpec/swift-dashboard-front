@@ -8,13 +8,16 @@ import { PermissionURL } from 'utils/endpoint'
 
 const PermissionForm = props => {
     const [data, setData] = useState([])
-    const { handleSubmit, errors, register, setValue, setError, reset } = useForm()
+    const { defaultValues } = props
+    console.log(defaultValues)
+    const { handleSubmit, errors, register, setValue, setError, reset } = useForm({ defaultValues })
     const [permissions, setPermission] = useState([])
 
     useEffect(() => {
         client.get(PermissionURL).then(res => {
             setData(res.data)
         })
+        setPermission(defaultValues.permissions.map(permission => permission.id))
     }, [])
 
     useEffect(() => {
@@ -24,11 +27,25 @@ const PermissionForm = props => {
     }, [props.errors])
 
     const onClick = id => {
-        setPermission(state => [...state, id])
+        setPermission(state => {
+            let isFilter = false
+            let perms = state.filter(value => {
+                if (id === value) {
+                    isFilter = true
+                    return true
+                }
+                return false
+            })
+            
+            if (isFilter) {
+                return perms
+            }
+            return [...state, id]
+        })
     }
 
     return (
-        <form onSubmit={handleSubmit(data => props.submitForm({name: data.name, permissions}))} className='d-flex p-3'>
+        <form onSubmit={handleSubmit(data => props.submitForm({ name: data.name, permissions }))} className='d-flex p-3'>
             <div className='col-12 m-0 p-0'>
                 <div className='d-flex'>
                     <div className='col-12'>
@@ -54,7 +71,9 @@ const PermissionForm = props => {
                                 </td>
                                 {value.permissions.map(permission => <td>
                                     <FormGroup check>
-                                        <Input onClick={() => onClick(permission.id)} type="checkbox" name="check" id={permission.codename} />
+                                        <Input onClick={() => onClick(permission.id)} type="checkbox" 
+                                        checked={!!defaultValues.permissions.find(value => value.name === permission.name)} 
+                                        name="check" id={permission.codename} />
                                         <Label for={permission.codename} check>{permission.codename}</Label>
                                     </FormGroup>
                                 </td>)}

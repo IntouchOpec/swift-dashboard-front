@@ -4,17 +4,17 @@ import Swal from 'sweetalert2'
 import { Card } from 'reactstrap'
 import { useHistory } from 'react-router-dom'
 import client from 'utils/client'
-import { PermissionURL, groupsDetailUR } from 'utils/endpoint'
+import { groupsURL, groupsDetailUR } from 'utils/endpoint'
 
 const CreatePermissionPage = props => {
     const history = useHistory()
     const [errors, setErrors] = useState({})
+
     const submitForm = data => {
-        console.log(data)
-        client.post(PermissionURL, data)
+        client.post(groupsURL, data)
         .then(res => {
             Swal.fire('Created !', 'Success .', 'success')
-            .then(result => history.push('/job_type'))
+            .then(result => history.push('/permissions'))
         })
         .catch(error => {
             setErrors(error.response.data)  
@@ -29,7 +29,7 @@ const CreatePermissionPage = props => {
             </div>
             <hr />
             <Card>
-                <PermissionForm submitForm={submitForm} errors={errors}/>
+                <PermissionForm defaultValues={{}} submitForm={submitForm} errors={errors}/>
             </Card>
         </div>
     )
