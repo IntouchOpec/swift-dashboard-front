@@ -10,18 +10,28 @@ import { companyDetailURL } from 'utils/endpoint'
 const EditCompanyPage = props => {
     const history = useHistory()
     const [errors, setErrors] = useState({})
+    const [defaultValue, setDefaultValue] = useState()
+    const [isloading, setIsloading] = useState(true)
     const { id } = useParams()
-    console.log({ id })
+
+    useEffect(() => {
+        client.get(companyDetailURL.replace(':id', id)).then(res => {
+            setDefaultValue(res.data)
+            setIsloading(false)
+            console.log(res.data)
+        })
+    }, [])
+
     const submitForm = data => {
         console.log(data)
         client.put(companyDetailURL.replace(':id', id), data)
-        .then(res => {
-            Swal.fire('Created !', 'Success .', 'success')
-            .then(result => history.push('/company'))
-        })
-        .catch(error => {
-            setErrors(error.response.data)  
-        })
+            .then(res => {
+                Swal.fire('Created !', 'Success .', 'success')
+                    .then(result => history.push('/company'))
+            })
+            .catch(error => {
+                setErrors(error.response.data)
+            })
     }
 
     return (
@@ -33,7 +43,7 @@ const EditCompanyPage = props => {
             </div>
             <hr />
             <Card>
-                <CompanyForm submitForm={submitForm} errors={errors}/>
+                {!isloading && <CompanyForm submitForm={submitForm} errors={errors} defaultValue={defaultValue} />}
             </Card>
         </div>
     )

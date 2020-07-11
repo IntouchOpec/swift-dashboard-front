@@ -9,19 +9,30 @@ import { jobtypeURL, jobtypeDetailURL } from 'utils/endpoint'
 
 const EditJobTypePage = props => {
     const history = useHistory()
+    const [defaultValue, setDefaultValue] = useState()
+    const [isloading, setIsloading] = useState(true)
     const [errors, setErrors] = useState({})
     const { id } = useParams()
     console.log({ id })
+
+    useEffect(() => {
+        client.get(jobtypeDetailURL.replace(':id', id)).then(res => {
+            setDefaultValue(res.data)
+            setIsloading(false)
+            console.log(res.data)
+        })
+    }, [])
+
     const submitForm = data => {
         console.log(data)
         client.put(jobtypeDetailURL.replace(':id', id), data)
-        .then(res => {
-            Swal.fire('Created !', 'Success .', 'success')
-            .then(result => history.push('/job_type'))
-        })
-        .catch(error => {
-            setErrors(error.response.data)  
-        })
+            .then(res => {
+                Swal.fire('Created !', 'Success .', 'success')
+                    .then(result => history.push('/job_type'))
+            })
+            .catch(error => {
+                setErrors(error.response.data)
+            })
     }
     return (
         <div className='mt-4'>
@@ -32,7 +43,7 @@ const EditJobTypePage = props => {
             </div>
             <hr />
             <Card>
-                <JobTypeForm submitForm={submitForm} errors={errors}/>
+                {!isloading && <JobTypeForm submitForm={submitForm} errors={errors} defaultValue={defaultValue} />}
             </Card>
         </div>
     )
