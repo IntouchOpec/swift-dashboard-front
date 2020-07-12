@@ -7,7 +7,16 @@ import client from 'utils/client'
 
 const JobTypeForm = props => {
 
-    const { handleSubmit, errors, register, setValue, setError, reset } = useForm()
+    const { defaultValue } = props
+
+    const methods = useForm({
+        mode: 'onChnage',
+        defaultValues: {
+            ...defaultValue,
+        }
+    })
+
+    const { register, unregister, handleSubmit, setValue, errors, setError, clearError } = methods
 
     useEffect(() => {
         Object.keys(props.errors).map(key => {

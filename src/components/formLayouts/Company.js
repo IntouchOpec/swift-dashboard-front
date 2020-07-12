@@ -6,8 +6,16 @@ import SelectField from 'components/forms/SelectField'
 import client from 'utils/client'
 
 const CompanyForm = props => {
+    const { defaultValue } = props
 
-    const { handleSubmit, errors, register, setValue, setError, reset } = useForm()
+    const methods = useForm({
+        mode: 'onChnage',
+        defaultValues: {
+            ...defaultValue,
+        }
+    })
+
+    const { register, unregister, handleSubmit, setValue, errors, setError, clearError } = methods
 
     useEffect(() => {
         Object.keys(props.errors).map(key => {
