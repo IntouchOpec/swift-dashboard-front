@@ -69,17 +69,33 @@ const KEYS = ['-', 'active', 'username', 'role', 'email', 'full name', 'created 
 
 const UserPage = props => {
     const onChangeFile = event => {
+        let emailList = {}
         readXlsxFile(event.target.files[0])
             .then(result => {
                 let data = []
                 console.log(result)
+                let email
                 result.map((value, index) => {
                     if (index !== 0) {
+                        email = value[9]
+                        if (!emailList[value[9]]) {
+                            emailList[value[9]] = true
+                        } else if (email) {
+                            let nameParts = email.split("@")
+                            email = `${nameParts[0]}_${value[4]}@${nameParts[1]}`
+                            email = email.replace(/ /g,'')   
+                        } else {
+                            email = `${value[4]}@swiftdynamics.co.th`
+                            email = email.replace(/ /g,'')
+                        }
+                        console.log(email)
                         data.push({
                             position: value[1],
                             last_name: value[6],
                             first_name: value[4],
-                            email: value[9],
+                            last_name_th: value[3],
+                            first_name_th: value[5],
+                            email: email,
                             phone: value[8],
                             username: value[9],
                             prefix: value[2],
@@ -88,7 +104,7 @@ const UserPage = props => {
                         })
                     }
                 })
-                console.log(data)
+                // console.log(data)
                 client.post(usersURL + '?many=True', data).then(res => {
                     console.log(res)
                 }).catch(err => {
