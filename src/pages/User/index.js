@@ -22,11 +22,6 @@ const filterOptions = [
     { label: 'last_name', value: 'user__last_name' },
 ]
 
-// name: 'superadmin@swiftdynamics.co.th'
-// username: 'superadmin'
-// last_name: 'swift-dynamics'
-// first_name: 'Superadmin'
-
 const RowRender = props => {
     const [active, setActive] = useState(false)
 
@@ -73,7 +68,6 @@ const UserPage = props => {
         readXlsxFile(event.target.files[0])
             .then(result => {
                 let data = []
-                console.log(result)
                 let email
                 result.map((value, index) => {
                     if (index !== 0) {
@@ -88,7 +82,6 @@ const UserPage = props => {
                             email = `${value[4]}@swiftdynamics.co.th`
                             email = email.replace(/ /g,'')
                         }
-                        console.log(email)
                         data.push({
                             position: value[1],
                             last_name: value[6],
@@ -99,7 +92,7 @@ const UserPage = props => {
                             phone: value[8],
                             username: value[9],
                             prefix: value[2],
-                            company__name: value[12],
+                            company_name: value[12],
                             password: '1234'
                         })
                     }
