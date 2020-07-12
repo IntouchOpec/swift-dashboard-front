@@ -31,19 +31,25 @@ const CamerasPage = props => {
                     <img className='img-fluid' src="http://103.30.127.4:8000/api/v1/video-camera/" />
                 </div>
                 <div className='col-6'>
-                    <Card className='h-100 w-100 align-items-center' >
-                        <Button className="align-self-center">+</Button>
-                    </Card>
+                    <div className='container d-flex h-100'>
+                        <div className='row align-self-center w-100'>
+                            <div className='col-3 mx-auto text-center'>
+                                <Button className="align-self-center">+</Button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div className='col-6'>
-                    <Card className='h-100 w-100 align-items-center' >
-                        <img className='img-fluid' src="http://103.30.127.4:8000/api/v1/video-camera/" />
-                    </Card>
+                    <img className='img-fluid' src="http://103.30.127.4:8000/api/v1/video-camera/" />
                 </div>
                 <div className='col-6'>
-                    <Card className='h-100 w-100 align-items-center' >
-                        <Button className="align-self-center">+</Button>
-                    </Card>
+                    <div className='container d-flex h-100'>
+                        <div className='row align-self-center w-100'>
+                            <div className='col-3 mx-auto text-center'>
+                                <Button className="align-self-center">+</Button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
