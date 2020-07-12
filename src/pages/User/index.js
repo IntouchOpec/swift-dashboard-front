@@ -69,6 +69,7 @@ const UserPage = props => {
             .then(result => {
                 let data = []
                 let email
+                console.log(result)
                 result.map((value, index) => {
                     if (index !== 0) {
                         email = value[9]
@@ -93,7 +94,8 @@ const UserPage = props => {
                             username: value[9],
                             prefix: value[2],
                             company_name: value[12],
-                            password: '1234'
+                            password: '1234',
+                            admin: value[13]
                         })
                     }
                 })
