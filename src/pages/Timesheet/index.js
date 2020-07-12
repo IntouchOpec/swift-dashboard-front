@@ -11,10 +11,7 @@ const LIMIT = 10
 const KEYS = ['Staff', 'Job', 'Start Date', 'End Date', 'Worktime', 'Created By', 'Edit']
 
 const filterOptions = [
-    { label: 'document_number', value: 'report_type' },
-    { label: 'Staff', value: 'title' },
-    { label: 'Job', value: 'status' },
-    { label: 'Create By', value: 'user__first_name' },
+    
 ]
 
 const RowRender = props => {

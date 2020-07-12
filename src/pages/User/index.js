@@ -15,11 +15,10 @@ const LIMIT = 10
 
 
 const filterOptions = [
-    { label: 'document_number', value: 'report_type' },
-    { label: 'title', value: 'title' },
-    { label: 'status', value: 'status' },
-    { label: 'first_name', value: 'user__first_name' },
-    { label: 'last_name', value: 'user__last_name' },
+    { label: 'first name', value: 'first_name' },
+    { label: 'first name th', value: 'first_name_th' },
+    { label: 'last name', value: 'last_name' },
+    { label: 'last name th', value: 'last_name_th' },
 ]
 
 const RowRender = props => {
