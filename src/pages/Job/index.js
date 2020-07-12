@@ -12,24 +12,8 @@ const filterOptions = [
     { label: 'Job Name', value: 'job_name' },
     { label: 'Create By', value: 'user' },
 ]
-const FakeData = [
-    { code: '01.001', name: 'Mobilization Machine' },
-    { code: '02.001', name: 'Document Control' },
-    { code: '03.001', name: 'Piling Work' },
-    { code: '03.002', name: 'Footing Work' },
-    { code: '03.003', name: 'Column Work' },
-    { code: '04.001', name: 'Fire Alarm' },
-    { code: '04.002', name: 'Sanitary Work' },
-    { code: '04.003', name: 'Lighting' },
-    { code: '04.004', name: 'Earthing' },
-]
-const RowRender = props => {
-    const [active, setActive] = useState(false)
 
-    useEffect(() => {
-        setActive(props.active)
-    }, [props.id])
-    console.log(props)
+const RowRender = props => {
     return (
         <tr>
             <td>{props.code}</td>
@@ -39,16 +23,6 @@ const RowRender = props => {
         </tr>
     )
 }
-/* const RowRender = props => {
-    return FakeData.map((job,key)=>
-        <tr key={`job-${key}`}>
-            <td>{job.code}</td>
-            <td>{job.name}</td>
-            <td>{props.user}</td>
-            <td><Button color='danger'>Delete</Button></td>
-        </tr>
-    )
-} */
 
 const JobPage = props => {
 

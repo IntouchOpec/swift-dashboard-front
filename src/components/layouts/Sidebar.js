@@ -75,14 +75,7 @@ const ListMenu = (props, user) => {
     }
     return menus.filter(menu => admin === menu.admin).map(menu => {
         return (
-            <NavItem key={menu.path} className='my-2'>
-                <NavLink tag={Link} to={menu.path}>
-                    {menu.name}
-                </NavLink>
-                {Array.isArray(menu.subMenus) && menu.subMenus.map(subMenu => <NavLink tag={Link} to={menu.subMenu}>
-                    {subMenu.name}
-                </NavLink>)}
-            </NavItem>
+            <CollapseMenu menu={menu} />
         )
     })
 }

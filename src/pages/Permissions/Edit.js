@@ -19,7 +19,7 @@ const EditPermissionPage = props => {
     }, [])
 
     const submitForm = data => {
-        client.post(groupsDetailUR.replace(':id', id), data)
+        client.put(groupsDetailUR.replace(':id', id), data)
             .then(res => {
                 Swal.fire('Editd !', 'Success .', 'success')
                     .then(result => history.push('/permissions'))

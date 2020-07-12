@@ -17,7 +17,9 @@ const PermissionForm = props => {
         client.get(PermissionURL).then(res => {
             setData(res.data)
         })
-        setPermission(defaultValues.permissions.map(permission => permission.id))
+        if (defaultValues.permissions) {
+            setPermission(defaultValues.permissions.map(permission => permission.id))
+        }
     }, [])
 
     useEffect(() => {
@@ -72,7 +74,7 @@ const PermissionForm = props => {
                                 {value.permissions.map(permission => <td>
                                     <FormGroup check>
                                         <Input onClick={() => onClick(permission.id)} type="checkbox" 
-                                        checked={!!defaultValues.permissions.find(value => value.name === permission.name)} 
+                                        checked={defaultValues.permissions && !!permissions.find(value => value === permission.id)} 
                                         name="check" id={permission.codename} />
                                         <Label for={permission.codename} check>{permission.codename}</Label>
                                     </FormGroup>
