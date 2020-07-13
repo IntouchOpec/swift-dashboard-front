@@ -18,31 +18,36 @@ const EditUserPage = props => {
     const [companys, setCompanys] = useState([])
     useEffect(() => {
         client.get(groupsURL)
-        .then(({ data }) => {
-            setGroups(data)
-        })
-        .catch(err => { })
-    client.get(companyURL)
-        .then(({ data }) => {
-            setCompanys(data.result)
-        })
-        .catch(err => { })
-        client.get(usersDetailURL.replace(':id', id))
-            .then(res => {
-                // let group, company
-                if (res.data.group.id) {
-                    res.data.group = `${res.data.group.id}`
-                }
-                if (res.data.company.id) {
-                    res.data.company = `${res.data.company.id}`
-                }
-                console.log(res.data)
-                setData(res.data)
-                setLoading(false)
-            }).catch(err => {
-
+            .then(({ data }) => {
+                setGroups(data.result)
             })
-           
+            .catch(err => { })
+
+        client.get(companyURL)
+            .then(({ data }) => {
+                setCompanys(data.result)
+            })
+            .catch(err => { })
+
+        setTimeout(() => {
+            client.get(usersDetailURL.replace(':id', id))
+                .then(res => {
+                    console.log(res.data.group,res.data.company.id)
+                    if (res.data.group) {
+                        res.data.group = `${res.data.group.id}`
+                    }
+                    if (res.data.company) {
+                        res.data.company = `${res.data.company.id}`
+                    }
+                    console.log(res.data)
+                    setData(res.data)
+                    setLoading(false)
+                }).catch(err => {
+                    console.log(err)
+                })
+        }, 2000);
+
+
     }, [])
 
     const submitForm = data => {
@@ -59,9 +64,11 @@ const EditUserPage = props => {
 
     return (
         <>
-        {!loading && <UserForm submitForm={submitForm} mode='Edit' errors={errors} defaultValues={data} 
-        groups={groups}
-        companys={companys} />}
+            {!loading &&
+                <UserForm submitForm={submitForm} mode='Edit' errors={errors} defaultValues={data}
+                    groups={groups}
+                    companys={companys} />
+            }
         </>
     )
 }

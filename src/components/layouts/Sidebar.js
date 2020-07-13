@@ -45,7 +45,7 @@ const CollapseMenu = props => {
                 <NavLink tag={Link} to={menu.path}> {menu.name} </NavLink>}
         </NavItem>
         {Array.isArray(menu.subMenus) &&
-            <Collapse isOpen={isOpen}>
+            <Collapse className='ml-1' isOpen={isOpen}>
                 {menu.subMenus.map(subMenu => <NavLink tag={Link} to={subMenu.path}>
                     {subMenu.name}
                 </NavLink>)}

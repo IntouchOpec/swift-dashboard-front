@@ -5,8 +5,8 @@ import TableBase from 'components/tables/TableBase'
 import client from 'utils/client'
 import { isEmpty } from 'utils'
 import { usersURL, usersDetailURL } from 'utils/endpoint'
-import { Table, Card, Button, Input } from 'reactstrap'
-import { getChartName, dateFormat } from 'utils/formats'
+import { Button } from 'reactstrap'
+import { dateFormat } from 'utils/formats'
 import SwitchButton from 'bootstrap-switch-button-react'
 import readXlsxFile from 'read-excel-file'
 import Swal from 'sweetalert2'
@@ -68,7 +68,6 @@ const UserPage = props => {
             .then(result => {
                 let data = []
                 let email
-                console.log(result)
                 result.map((value, index) => {
                     if (index !== 0) {
                         email = value[9]
@@ -100,9 +99,7 @@ const UserPage = props => {
                 })
                 // console.log(data)
                 client.post(usersURL + '?many=True', data).then(res => {
-                    console.log(res)
                 }).catch(err => {
-                    console.log(err.response.data)
                     let massage = ''
                     err.response.data.map((value, index) => {
                         if (!isEmpty(value)) {

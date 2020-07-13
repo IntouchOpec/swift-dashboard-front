@@ -76,7 +76,7 @@ const TimeSheetForm = props => {
                                             placeholder=''
                                         />
                                     </div>
-                                    <div class="col-2">
+                                    <div className="col-2">
                                         <Button color='danger' style={{ marginTop: '2em' }} className='rounded-0' onClick={() => removeUser(index)}>Remove User</Button>
                                     </div>
                                 </div>
