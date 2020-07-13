@@ -37,6 +37,7 @@ export const timeSheetURL = `${endpoint}time_sheets/`
 export const timeSheetDetailURL = `${endpoint}time_sheets/:id/`
 
 export const jobsURL = `${endpoint}jobs/`
+export const jobsDetailURL = `${endpoint}jobs/:id/`
 
 export const jobTypesURL = `${endpoint}job_types/`
 
