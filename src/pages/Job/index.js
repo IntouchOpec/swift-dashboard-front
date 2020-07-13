@@ -19,7 +19,6 @@ const persissionName = { create: 'add_job', update: 'change_job', read: 'view_jo
 
 const RowRender = props => {
     function handleClick(id) {
-        console.log(id)
         client.delete(jobsDetailURL.replace(':id', id))
             .then(res => {
                 Swal.fire('Created !', 'Success .', 'success')

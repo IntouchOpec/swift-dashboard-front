@@ -58,7 +58,6 @@ var document = {
 
     ],
     pageBreakBefore: function (currentNode, followingNodesOnPage, nodesOnNextPage, previousNodesOnPage) {
-        console.log(currentNode)
         return currentNode.headlineLevel === 1 && currentNode.pageNumbers.length > 1;
     },
     defaultStyle: {
@@ -149,7 +148,6 @@ const conVTopdf = (data, monthfilter) => {
 
 export const exportPDF = (data, monthfilter) => {
     conVTopdf(data, monthfilter)
-    console.log(document)
     pdfMake.createPdf(document).open();
 }
 

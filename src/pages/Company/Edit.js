@@ -18,12 +18,10 @@ const EditCompanyPage = props => {
         client.get(companyDetailURL.replace(':id', id)).then(res => {
             setDefaultValue(res.data)
             setIsloading(false)
-            console.log(res.data)
         })
     }, [])
 
     const submitForm = data => {
-        console.log(data)
         client.put(companyDetailURL.replace(':id', id), data)
             .then(res => {
                 Swal.fire('Created !', 'Success .', 'success')

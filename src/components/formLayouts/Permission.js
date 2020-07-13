@@ -9,7 +9,6 @@ import { PermissionURL } from 'utils/endpoint'
 const PermissionForm = props => {
     const [data, setData] = useState([])
     const { defaultValues } = props
-    console.log(defaultValues)
     const { handleSubmit, errors, register, setValue, setError, reset } = useForm({ defaultValues })
     const [permissions, setPermission] = useState([])
 

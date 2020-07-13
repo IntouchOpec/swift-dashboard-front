@@ -116,15 +116,12 @@ const UserPage = props => {
                         })
                     }
                 })
-                // console.log(data)
                 client.post(usersURL + '?many=True', data).then(res => {
                 }).catch(err => {
                     let massage = ''
                     err.response.data.map((value, index) => {
                         if (!isEmpty(value)) {
-                            console.log(isEmpty(value), value, data[index])
                             for (const key in value) {
-                                console.log(`${index} : = ${value[key]}`)
                                 massage = massage + `<p>${index} : ${key} = ${value[key]} </p>`
                             }
                         }

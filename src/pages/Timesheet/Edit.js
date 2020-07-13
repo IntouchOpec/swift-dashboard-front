@@ -34,7 +34,6 @@ const EditTimeSheetPage = props => {
         client.get(timeSheetDetailURL.replace(':id', id)).then(res => {
             setDocument(res.data)
             setIsloading(false)
-            console.log(res.data)
         })
     }, [])
     return (
@@ -55,8 +54,6 @@ const EditForm = props => {
             end_date: data.end_date,
             day: data.day,
         }
-        // .replace(':id', id)
-        console.log(body)
         client.put(timeSheetDetailURL.replace(':id', id), body)
             .then(res => {
                 Swal.fire('Save !', 'Success .', 'success')
@@ -167,7 +164,6 @@ const Select = props => {
         register(name)
         setValue(name, defaultValues)
         setData(defaultValues)
-        console.log(error)
     }, [])
 
 
@@ -176,7 +172,6 @@ const Select = props => {
     }
 
     const onChange = item => {
-        console.log(item)
         setData(item)
         setValue(name, item)
         return

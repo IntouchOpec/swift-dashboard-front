@@ -13,18 +13,15 @@ const EditJobTypePage = props => {
     const [isloading, setIsloading] = useState(true)
     const [errors, setErrors] = useState({})
     const { id } = useParams()
-    console.log({ id })
 
     useEffect(() => {
         client.get(jobtypeDetailURL.replace(':id', id)).then(res => {
             setDefaultValue(res.data)
             setIsloading(false)
-            console.log(res.data)
         })
     }, [])
 
     const submitForm = data => {
-        console.log(data)
         client.put(jobtypeDetailURL.replace(':id', id), data)
             .then(res => {
                 Swal.fire('Created !', 'Success .', 'success')

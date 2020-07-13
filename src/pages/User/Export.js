@@ -55,14 +55,12 @@ const UserExportPage = props => {
             })
     }, []) */
     useEffect(() => {
-        console.log(moment().month(0).format("MMMM"))
         setLoading(true)
         let date_after = `${yearfilter.value}-${monthfilter.value}-1`
         let date_before = `${yearfilter.value}-${monthfilter.value}-${monthfilter.day}`
         client.get(`${timesheetReportURL.replace(':id', id)}?start_data_after=${date_after}&start_data_before=${date_before}&end_date_after=${date_after}&end_date_before=${date_before}`)
             .then(res => {
                 setData(res.data)
-                console.log(res.data)
                 setLoading(false)
             }).catch(err => {
 

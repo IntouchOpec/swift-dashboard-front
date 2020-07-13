@@ -63,7 +63,6 @@ const Search = props => {
                 />
             </div>
             <div className='col-md-2 col-sm-2 mt-2 text-right float-right ml-auto'>
-                {props.persissionName.create}
                 <AuthContext.Consumer>{context => {
                     if (context.auth.is_superuser || context.auth.permissions.find(value => value === persissionName.create)) {
                         return <Link to={createPath}>

@@ -43,7 +43,6 @@ const TableBase = props => {
             setPages(makePaginationList(res.data.count, limit))
             setPage({value: 1, label: 'Page 1'})
             setRows(res.data.result)
-            console.log(res.data.result)
             setLoading(false)
         })
     }, [])

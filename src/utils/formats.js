@@ -69,7 +69,6 @@ const unknownPrecipitation = 900
 
 const PopoverDetail = ({ description, datetime }) => {
     const [popoverOpen, setPopoverOpen] = useState(false);
-    console.log(datetime)
     const toggle = () => setPopoverOpen(!popoverOpen);
     return (
         <Popover placement='img' isOpen={popoverOpen} target={`img-${datetime}`} toggle={toggle}>

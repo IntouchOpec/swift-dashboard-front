@@ -189,7 +189,6 @@ const Select = props => {
 
     useEffect(() => {
         register(name)
-        console.log(error)
     }, [])
 
 

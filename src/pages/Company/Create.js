@@ -10,7 +10,6 @@ const CreateCompanyPage = props => {
     const history = useHistory()
     const [errors, setErrors] = useState({})
     const submitForm = data => {
-        console.log(data)
         client.post(companyURL, data)
         .then(res => {
             Swal.fire('Created !', 'Success .', 'success')

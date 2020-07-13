@@ -14,7 +14,6 @@ const ResetPass = props => {
     const { register, handleSubmit, setValue, errors, setError } = useForm()
     useEffect(() => {
         client.post(resetPasswordVerifyTokenURL, { token }).then(res => {
-            console.log(res)
         }).catch(error => {
             Swal.fire('Success !', 'Success .', 'success')
                 .then(result => history.push('/'))

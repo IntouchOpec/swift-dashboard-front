@@ -25,10 +25,8 @@ const RowRender = props => {
     useEffect(() => {
         setActive(props.active)
     }, [props.id])
-    console.log(props)
 
     function handleClick(id) {
-        console.log(id)
         client.delete(timeSheetDetailURL.replace(':id', id))
             .then(res => {
                 Swal.fire('Created !', 'Success .', 'success')

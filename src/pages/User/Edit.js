@@ -32,18 +32,15 @@ const EditUserPage = props => {
         setTimeout(() => {
             client.get(usersDetailURL.replace(':id', id))
                 .then(res => {
-                    console.log(res.data.group,res.data.company.id)
                     if (res.data.group) {
                         res.data.group = `${res.data.group.id}`
                     }
                     if (res.data.company) {
                         res.data.company = `${res.data.company.id}`
                     }
-                    console.log(res.data)
                     setData(res.data)
                     setLoading(false)
                 }).catch(err => {
-                    console.log(err)
                 })
         }, 2000);
 
@@ -51,7 +48,6 @@ const EditUserPage = props => {
     }, [])
 
     const submitForm = data => {
-        console.log(data)
         /* client.post(usersURL, data)
             .then(res => {
                 Swal.fire('Created !', 'Success .', 'success')

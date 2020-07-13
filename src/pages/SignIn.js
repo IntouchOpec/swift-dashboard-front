@@ -8,7 +8,7 @@ import qs from 'querystring'
 import { AUTH_AUTHENTICATED } from 'utils'
 import Swal from 'sweetalert2'
 
-console.log(process.env.HOST)
+
 const submitLogIn = dispatch => {
     return (data) => axios.post(` ${process.env.HOST}/api/o/token/`, qs.stringify({
             'username': data.email,

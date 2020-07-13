@@ -10,7 +10,6 @@ const CreateJobTypePage = props => {
     const history = useHistory()
     const [errors, setErrors] = useState({})
     const submitForm = data => {
-        console.log(data)
         client.post(jobtypeURL, data)
         .then(res => {
             Swal.fire('Created !', 'Success .', 'success')

@@ -8,11 +8,6 @@ const CamerasPage = props => {
     const [data, setData] = useState([])
 
     useEffect(() => {
-        client.get(`${CamerasURL}`)
-            .then(res => {
-                console.log(res.data)
-                setData(res.data.result)
-            })
         // .catch(err => {
         //     setData(state => state)
         // })

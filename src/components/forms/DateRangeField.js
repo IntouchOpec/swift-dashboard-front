@@ -46,7 +46,6 @@ const DateRange = props => {
     const [endDate, setLocalEndDate] = useState(endDateInit)
 
     useEffect(() => {
-        console.log((startDate && endDate) || (!startDate && !endDate) && true)
         // if ((startDate && endDate) || (!startDate && !endDate)) {
         //     clearError(props.start.key, props.end.key)
         // } else if (startDate && !endDate) {
