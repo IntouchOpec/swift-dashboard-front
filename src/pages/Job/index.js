@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import TableBase from 'components/tables/TableBase'
-import { reportsURL, jobsURL } from 'utils/endpoint'
+import { jobsDetailURL, jobsURL } from 'utils/endpoint'
 import { Button } from 'reactstrap'
+import client from 'utils/client'
+import Swal from 'sweetalert2'
 
 const LIMIT = 10
 
@@ -14,12 +16,20 @@ const filterOptions = [
 ]
 
 const RowRender = props => {
+    function handleClick(id) {
+        console.log(id)
+        client.delete(jobsDetailURL.replace(':id', id))
+        .then(res => {
+            Swal.fire('Created !', 'Success .', 'success')
+            .then(result => window.location.reload(false))
+        })
+    }
     return (
         <tr>
             <td>{props.code}</td>
             <td>{props.name}</td>
             <td>{props.user}</td>
-            <td><Button color='danger'>Delete</Button></td>
+            <td><Button color='danger' onClick={() => handleClick(props.id)}>Delete</Button></td>
         </tr>
     )
 }

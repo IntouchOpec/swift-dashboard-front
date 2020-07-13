@@ -61,7 +61,7 @@ const Search = props => {
                     placeholder='Filter'
                 />
             </div>
-            <div className='col-md-1 col-sm-2 mt-2 text-right float-right ml-auto'>
+            <div className='col-md-2 col-sm-2 mt-2 text-right float-right ml-auto'>
                 <AuthContext.Consumer>{context => {
                     if (context.auth.role !== 'user') {
                         return <Link to={createPath}>

@@ -20,31 +20,6 @@ const EditTimeSheetPage = props => {
 
     const history = useHistory()
 
-    const submitForm = data => {
-        let body = []
-        const userLocal = JSON.parse(window.localStorage.getItem('user'))
-        data.users.map(user => {
-            user.timeSheet.map(timeSheet => {
-                body.push({
-                    craeted_by: userLocal.id,
-                    job: timeSheet.job.id,
-                    job_type: timeSheet.jobTypes.id,
-                    start_date: timeSheet.start_date,
-                    end_date: timeSheet.end_date,
-                    day: timeSheet.day,
-                    staff: user.user.id
-                })
-            })
-        })
-        client.post(timeSheetURL, body)
-            .then(res => {
-                Swal.fire('Created !', 'Success .', 'success')
-                    .then(result => history.push('/timesheet'))
-            })
-            .catch(err => {
-                setErrors(err)
-            })
-    }
 
     useEffect(() => {
         client.get(usersURL).then(res => {
@@ -64,13 +39,33 @@ const EditTimeSheetPage = props => {
     }, [])
     return (
         <>
-            {!isloading && <EditForm document={document} jobTypes={jobTypes} jobs={jobs} users={users} />}
+            {!isloading && <EditForm document={document} jobTypes={jobTypes} jobs={jobs} users={users} id={id} history={history} />}
         </>
     )
 }
 
 const EditForm = props => {
-    const { document, jobs, jobTypes, users } = props
+    const { document, jobs, jobTypes, users, id, history } = props
+
+    const submitForm = data => {
+        let body = {
+            job: data.job.id,
+            job_type: data.jobTypes.id,
+            start_date: data.start_date,
+            end_date: data.end_date,
+            day: data.day,
+        }
+        // .replace(':id', id)
+        console.log(body)
+        client.put(timeSheetDetailURL.replace(':id', id), body)
+            .then(res => {
+                Swal.fire('Save !', 'Success .', 'success')
+                    .then(res => history.push('/timesheet'))
+            })
+            .catch(err => {
+                setErrors(err)
+            })
+    }
 
     const methods = useForm({
         mode: 'onChnage',
@@ -91,6 +86,7 @@ const EditForm = props => {
                     <h3>Edit TimeSheet</h3>
                     <div >
                         <Button
+                            onClick={handleSubmit(submitForm)}
                             type='submit'
                             color='warning' className='m-2 text-center rounded-0 btn'>
                             Save
@@ -98,7 +94,7 @@ const EditForm = props => {
                     </div>
                 </div>
                 <hr />
-                <form>
+                <form onSubmit={handleSubmit(submitForm)}>
                     <Card className='m-3'>
                         <div className='row' key={'fielduserList'}>
                             <div className='col-8 mx-2 align-items-end'>
