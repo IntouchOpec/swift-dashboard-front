@@ -15,6 +15,7 @@ const Search = props => {
         pages,
         setSearch,
         searchHandler,
+        persissionName,
         onClickFilter,
         onClickPage,
     } = props
@@ -62,8 +63,9 @@ const Search = props => {
                 />
             </div>
             <div className='col-md-2 col-sm-2 mt-2 text-right float-right ml-auto'>
+                {props.persissionName.create}
                 <AuthContext.Consumer>{context => {
-                    if (context.auth.role !== 'user') {
+                    if (context.auth.is_superuser || context.auth.permissions.find(value => value === persissionName.create)) {
                         return <Link to={createPath}>
                             <Button className='w-100 text-center rounded-0 btn btn-warning float-right'> Create</Button>
                         </Link>

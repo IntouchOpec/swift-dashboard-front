@@ -1,19 +1,12 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import InputField from 'components/forms/InputField'
 import { useForm } from 'react-hook-form'
 import { Button, Card } from 'reactstrap'
 import SelectField from 'components/forms/SelectField'
-import client from 'utils/client'
-import { groupsURL, companyURL } from 'utils/endpoint'
 
 const UserFrom = props => {
-
     const { submitForm, mode, defaultValues, groups, companys } = props
-
-
-    // conse
     const methods = useForm({
-        // mode: 'onChnage',
         defaultValues
     })
 
@@ -24,14 +17,6 @@ const UserFrom = props => {
             setError(key, key, props.errors[key][0])
         })
     }, [props.errors])
-
-    useEffect(() => {
-        // console.log(defaultValues.group)
-        // setValue('group', defaultValues.group)
-        // setValue('company', defaultValues.company)
-    }, [])
-
-    console.log(groups)
 
     return (
         <div className='mt-4'>

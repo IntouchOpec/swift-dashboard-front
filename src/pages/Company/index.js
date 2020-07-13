@@ -6,28 +6,20 @@ import { Link } from 'react-router-dom'
 import client from 'utils/client'
 import Swal from 'sweetalert2'
 import { useHistory } from 'react-router-dom'
+import { AuthContext } from 'providers'
 
 const LIMIT = 10
 
-const KEYS = ['Company Code','Company Name', 'Created By','-']
+const KEYS = ['Company Code', 'Company Name', 'Created By', '-']
 
 const filterOptions = [
-    {label: 'Company Code', value: 'code'},
-    {label: 'Company Name', value: 'cname'},
-    {label: 'Create By', value: 'user'},
+    { label: 'Company Code', value: 'code' },
+    { label: 'Company Name', value: 'cname' },
+    { label: 'Create By', value: 'user' },
 ]
-const FakeData = [
-    {code: '001', name: 'Company A', user:'pao'},
-    {code: '002', name: 'Company B', user:'pao'},
-    {code: '003', name: 'Company C', user:'pao'},
-    {code: '004', name: 'Company D', user:'pao'},
-    {code: '005', name: 'Company E', user:'pao'},
-    {code: '006', name: 'Company F', user:'pao'},
-    {code: '007', name: 'Company G', user:'pao'},
-    {code: '008', name: 'Company H', user:'pao'},
-    {code: '009', name: 'Company I', user:'pao'},
-]
-  
+const persissionName = { create: 'add_company', update: 'change_company', read: 'view_company', delete: 'delete_company' }
+
+
 const RowRender = props => {
     const history = useHistory()
     const [active, setActive] = useState(false)
@@ -39,23 +31,40 @@ const RowRender = props => {
     function handleClick(id) {
         console.log(id)
         client.delete(companyDetailURL.replace(':id', id))
-        .then(res => {
-            Swal.fire('Created !', 'Success .', 'success')
-            .then(result => window.location.reload(false))
-        })
+            .then(res => {
+                Swal.fire('Created !', 'Success .', 'success')
+                    .then(result => window.location.reload(false))
+            })
     }
     return (
-    <tr>
-        <td>{props.code}</td>
-        <td>{props.name}</td>
-        <td>Superadmin swift-dynamics</td>
-        <td>
-        <Link to={`/company/edit/${props.id}`}>
-            <Button className='rounded-0 mr-1' color='secondary'>Edit</Button>
-        </Link>
-        <Button className='rounded-0 mr-1' color='danger' onClick={() => handleClick(props.id)}>Delete</Button></td>
-    </tr>
-)}
+        <tr>
+            <td>{props.code}</td>
+            <td>{props.name}</td>
+            <td>Superadmin swift-dynamics</td>
+            <td>
+                <AuthContext.Consumer>{
+                    context => {
+                        let list = []
+                        if (context.auth.is_superuser || context.auth.permissions.find(value => value === persissionName.update)) {
+                            list.push(<Link to={`/company/edit/${props.id}`}>
+                                <Button className='rounded-0 mr-1' color='secondary'>Edit</Button>
+                            </Link>)
+                        }
+                        if (context.auth.is_superuser || context.auth.permissions.find(value => value === persissionName.read)) {
+                            list.push(
+                                <Button className='rounded-0 mr-1' color='danger' onClick={() => handleClick(props.id)}>Delete</Button>
+                            )
+                        }
+                        if (list.length === 0) {
+                            return '-'
+                        }
+                        return list
+                    }}
+                </AuthContext.Consumer>
+            </td>
+        </tr>
+    )
+}
 /* const RowRender = props => {
     return FakeData.map((company,key)=>
         <tr key={`company-${key}`}>
@@ -65,7 +74,7 @@ const RowRender = props => {
             <td><Button color='danger'>Delete</Button></td>
         </tr>
     )
-} */    
+} */
 
 const CompanyPage = props => {
     return (
@@ -78,7 +87,8 @@ const CompanyPage = props => {
                 </div>
             </div>
             <hr />
-            <TableBase 
+            <TableBase
+                persissionName={persissionName}
                 isMock={false}
                 keys={KEYS}
                 RowRender={RowRender}

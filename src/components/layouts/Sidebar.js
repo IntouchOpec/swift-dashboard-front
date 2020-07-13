@@ -9,7 +9,7 @@ const menus = [
     { admin: false, path: '/s_curve', name: 'S-Curve' },
     { admin: false, path: '/manpower_plan', name: 'Manpower Plan' },
     { admin: false, path: '/timesheet', name: 'Timesheet' },
-    { admin: true, path: '/cameras', name: 'Camera' },
+    { admin: false, path: '/cameras', name: 'Camera' },
     // { path: '/manpower_cost',name: 'Manpower Cost' },
     // { path: '/camera',name: 'Camera' },
     // { path: '/ai_camera',name: 'AI Camera' },
@@ -22,9 +22,9 @@ const menus = [
         admin: false, path: '/setting', name: 'Setting', subMenus: [
             { admin: false, path: '/company', name: 'Company' },
             { admin: false, path: '/job_type', name: 'Job Type' },
-            { admin: true, path: '/users', name: 'User' },
-            { admin: true, path: '/jobs', name: 'Job' },
-            { admin: true, path: '/charts', name: 'Chart' },
+            { admin: false, path: '/users', name: 'User' },
+            { admin: false, path: '/jobs', name: 'Job' },
+            { admin: false, path: '/charts', name: 'Chart' },
             { admin: true, path: '/permissions', name: 'Permission' },
         ]
     },
@@ -46,9 +46,20 @@ const CollapseMenu = props => {
         </NavItem>
         {Array.isArray(menu.subMenus) &&
             <Collapse className='ml-1' isOpen={isOpen}>
-                {menu.subMenus.map(subMenu => <NavLink tag={Link} to={subMenu.path}>
-                    {subMenu.name}
-                </NavLink>)}
+                <AuthContext.Consumer>{
+                    context => {
+                        if (context.auth.is_superuser) {
+                            return menu.subMenus.map(subMenu => <NavLink tag={Link} to={subMenu.path}>
+                                {subMenu.name}
+                            </NavLink>)
+                        }
+                        return menu.subMenus.filter(value => {
+                            return value.admin === context.auth.is_superuser
+                        }).map(subMenu => <NavLink tag={Link} to={subMenu.path}>
+                            {subMenu.name}
+                        </NavLink>)
+                    }}</AuthContext.Consumer>
+
             </Collapse>
         }
     </>

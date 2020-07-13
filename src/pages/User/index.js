@@ -10,16 +10,17 @@ import { dateFormat } from 'utils/formats'
 import SwitchButton from 'bootstrap-switch-button-react'
 import readXlsxFile from 'read-excel-file'
 import Swal from 'sweetalert2'
+import { AuthContext } from 'providers'
 
 const LIMIT = 10
-
-
 const filterOptions = [
     { label: 'first name', value: 'first_name' },
     { label: 'first name th', value: 'first_name_th' },
     { label: 'last name', value: 'last_name' },
     { label: 'last name th', value: 'last_name_th' },
 ]
+
+const persissionName = { create: 'add_user', update: 'change_user', read: 'view_user',  }
 
 const RowRender = props => {
     const [active, setActive] = useState(false)
@@ -40,14 +41,32 @@ const RowRender = props => {
     return (
         <tr>
             <td>
-                <Link to={`/user/${props.id}`}>
-                    <Button className='rounded-0 mr-1' outline color='secondary'>view</Button>
-                </Link>
-                <Link to={`/user/${props.id}/edit`}>
-                    <Button className='rounded-0' outline color='secondary'>edit</Button>
-                </Link>
+                <AuthContext.Consumer>{context => {
+                    let list = []
+                    if (context.auth.is_superuser || context.auth.permissions.find(value => value === persissionName.read)) {
+                        list.push(<Link to={`/user/${props.id}`}>
+                            <Button className='rounded-0 mr-1' outline color='secondary'>view</Button>
+                        </Link>)
+                    }
+                    if (context.auth.is_superuser || context.auth.permissions.find(value => value === persissionName.update)) {
+                        list.push(<Link to={`/user/${props.id}/edit`}>
+                            <Button className='rounded-0' outline color='secondary'>edit</Button>
+                        </Link>)
+                    }
+                    if (list.length === 0) {
+                        return <>-</>
+                    }
+                    return list
+                }}
+                </AuthContext.Consumer>
             </td>
-            <td><SwitchButton onChange={onActiveHanlder} checked={active} size='sm' /></td>
+            <td> <AuthContext.Consumer>{context => {
+                if (context.auth.is_superuser || context.auth.permissions.find(value => value === persissionName.update)) {
+                    return <SwitchButton onChange={onActiveHanlder} checked={active} size='sm' />
+                }
+                return '-'
+            }}
+            </AuthContext.Consumer></td>
             <td>{props.username}</td>
             <td>{props.role}</td>
             <td>{props.email}</td>
@@ -76,10 +95,10 @@ const UserPage = props => {
                         } else if (email) {
                             let nameParts = email.split("@")
                             email = `${nameParts[0]}_${value[4]}@${nameParts[1]}`
-                            email = email.replace(/ /g,'')   
+                            email = email.replace(/ /g, '')
                         } else {
                             email = `${value[4]}@swiftdynamics.co.th`
-                            email = email.replace(/ /g,'')
+                            email = email.replace(/ /g, '')
                         }
                         data.push({
                             position: value[1],
@@ -113,9 +132,9 @@ const UserPage = props => {
                     Swal.fire({
                         title: `can'n create users.!`,
                         html: `
-                          :
+  :
                          ${massage}
-                        `,
+            `,
                         confirmButtonText: 'Lovely!'
                     })
                     Swal.fire('error !', massage, 'error')
@@ -131,12 +150,13 @@ const UserPage = props => {
                 <div className='d-flex'>
                     <div>
                         <h2 className='h3 col-2'>User</h2>
+                        <input name='file' type='file' onChange={onChangeFile} />
                     </div>
                 </div>
             </div>
             <hr />
-            <input name='file' type='file' onChange={onChangeFile} />
             <TableBase
+                persissionName={persissionName}
                 keys={KEYS}
                 RowRender={RowRender}
                 createPath={'/users/create'}

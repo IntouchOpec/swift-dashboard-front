@@ -6,14 +6,18 @@ import { dateFormat } from 'utils/formats'
 import { Link } from 'react-router-dom'
 import { Button } from 'reactstrap'
 import Swal from 'sweetalert2'
+import { AuthContext } from 'providers'
 
 const LIMIT = 10
 
 const KEYS = ['Staff', 'Job', 'Start Date', 'End Date', 'Worktime', 'Created By', 'Edit']
 
 const filterOptions = [
-    
+
 ]
+
+const persissionName = { create: 'add_timesheet', update: 'change_timesheet', read: 'view_timesheet' }
+
 
 const RowRender = props => {
     const [active, setActive] = useState(false)
@@ -26,10 +30,10 @@ const RowRender = props => {
     function handleClick(id) {
         console.log(id)
         client.delete(timeSheetDetailURL.replace(':id', id))
-        .then(res => {
-            Swal.fire('Created !', 'Success .', 'success')
-            .then(result => window.location.reload(false))
-        })
+            .then(res => {
+                Swal.fire('Created !', 'Success .', 'success')
+                    .then(result => window.location.reload(false))
+            })
     }
 
     const onActiveHanlder = () => {
@@ -48,8 +52,25 @@ const RowRender = props => {
             <td>{dateFormat(props.end_date)}</td>
             <td>{props.day}</td>
             <td>{props.craeted_by.fullname}</td>
-            <td><Link to={`/timesheet/edit/${props.id}`}><Button>Edit</Button></Link><Button color='danger' onClick={() => handleClick(props.id)}>Delete</Button></td>
-            {/* {JSON.stringify(props)} */}
+            <td>
+                <AuthContext.Consumer>{
+                    context => {
+                        let list = []
+                        if (context.auth.is_superuser || context.auth.permissions.find(value => value === persissionName.update)) {
+                            list.push(<Link to={`/timesheet/edit/${props.id}`}>
+                                <Button>Edit</Button>
+                            </Link>)
+                        }
+                        if (context.auth.is_superuser || context.auth.permissions.find(value => value === persissionName.update)) {
+                            list.push(<Button color='danger' onClick={() => handleClick(props.id)}>Delete</Button>)
+                        }
+                        if (list.length === 0) {
+                            return '-'
+                        }
+                        return list
+                    }}
+                </AuthContext.Consumer>
+            </td>
         </tr>
     )
 }
@@ -62,9 +83,9 @@ const TimeSheetPage = props => {
             .then(res => {
                 setData(res.data.result)
             })
-            // .catch(err => {
-            //     setData(state => state)
-            // })
+        // .catch(err => {
+        //     setData(state => state)
+        // })
     }, [])
 
     return (
@@ -77,8 +98,10 @@ const TimeSheetPage = props => {
                 </div>
             </div>
             <hr />
+
             <TableBase
                 isMock={false}
+                persissionName={persissionName}
                 keys={KEYS}
                 RowRender={RowRender}
                 createPath={'/timesheet/create'}

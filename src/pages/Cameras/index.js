@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import client from 'utils/client'
 import { CamerasURL } from 'utils/endpoint'
 import { Card, Button } from 'reactstrap'
+import { AuthContext } from 'providers'
+
 const CamerasPage = props => {
     const [data, setData] = useState([])
 

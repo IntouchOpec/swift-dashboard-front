@@ -25,6 +25,7 @@ const TableBase = props => {
         filterOptions, 
         limit,
         url,
+        persissionName,
         isMock,
         mockData,
     } = props
@@ -87,6 +88,7 @@ const TableBase = props => {
                 search={search} 
                 filter={filter}
                 page={page}
+                persissionName={persissionName}
                 pages={pages}
                 setSearch={setSearch}
                 searchHandler={searchHandler} 

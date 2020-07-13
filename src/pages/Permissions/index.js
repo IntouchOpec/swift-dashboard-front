@@ -25,9 +25,9 @@ const RowRender = props => {
 
     const handleClick = id => {
         client.delete(`${groupsDetailUR.replace(':id', id)}`)
-        .then(res => {
-            setActive(state => !state)
-        })
+            .then(res => {
+                setActive(state => !state)
+            })
     }
 
     const onActiveHanlder = () => {
@@ -77,6 +77,7 @@ const PermissionPage = props => {
             </div>
             <hr />
             <TableBase
+                persissionName={{  }}
                 isMock={false}
                 mockData={data}
                 keys={KEYS}
