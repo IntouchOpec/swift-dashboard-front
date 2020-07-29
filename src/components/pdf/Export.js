@@ -78,6 +78,11 @@ var document = {
             fontSize: 16,
             color: 'black'
         },
+        grandTotal: {
+            bold: true,
+            fontSize: 18,
+            color: 'black'
+        },
         subtitle: {
             bold: true,
             fontSize: 20,
@@ -136,6 +141,14 @@ const conVTopdf = (data, monthfilter) => {
             style: 'body',
             headlineLevel: 1
         })
+    })
+    document.content.push({
+        table: {
+            widths: [160, 160, 160],
+            body: [[{ text: `Grand Total`, style: 'grandTotal', colSpan: 2, alignment: 'center' }, {}, { text: sumallday(data.time_sheets), style: 'grandTotal', alignment: 'center' }]]
+        },
+        style: 'body',
+        headlineLevel: 1
     })
     document.content.push({
         text: [
