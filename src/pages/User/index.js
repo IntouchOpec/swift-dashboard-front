@@ -11,6 +11,7 @@ import SwitchButton from 'bootstrap-switch-button-react'
 import readXlsxFile from 'read-excel-file'
 import Swal from 'sweetalert2'
 import { AuthContext } from 'providers'
+// import { Button }
 
 const LIMIT = 10
 const filterOptions = [
@@ -147,6 +148,7 @@ const UserPage = props => {
                 <div className='d-flex'>
                     <div>
                         <h2 className='h3 col-2'>User</h2>
+                        {/* <Button> */}
                         <input name='file' type='file' onChange={onChangeFile} />
                     </div>
                 </div>

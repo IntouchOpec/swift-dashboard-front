@@ -37,8 +37,7 @@ const RowRender = props => {
                             return <Button color='danger' onClick={() => handleClick(props.id)}>Delete</Button>
                         }
                         return '-'
-                    }}
-                </AuthContext.Consumer>>
+                    }}</AuthContext.Consumer>
             </td>
         </tr>
     )

@@ -4,14 +4,14 @@ import GoogleMapReact from 'google-map-react'
 import moment from 'moment'
 import { weathersURL, settingURL } from 'utils/endpoint'
 import client from 'utils/client'
-import { getWeatherIcon } from 'utils/formats' 
+import { getWeatherIcon } from 'utils/formats'
 
 const sumMock = [
-    {name: 'license & Permit', planValue: 100, actValue: 40},
-    {name: 'Engineering', planValue: 90, actValue: 40},
-    {name: 'Procuement', planValue: 56, actValue: 40}, 
-    {name: 'Delivery', planValue: 100, actValue: 40}, 
-    {name: 'Civil Work', planValue: 98, actValue: 40}
+    { name: 'license & Permit', planValue: 0, actValue: 0 },
+    { name: 'Engineering', planValue: 0, actValue: 0 },
+    { name: 'Procuement', planValue: 0, actValue: 0 },
+    { name: 'Delivery', planValue: 0, actValue: 0 },
+    { name: 'Civil Work', planValue: 0, actValue: 0 }
 ]
 
 const OverviewPage = props => {
@@ -21,7 +21,7 @@ const OverviewPage = props => {
     useEffect(() => {
         client.get(weathersURL).then(res => {
             setWeather(res.data)
-        }).catch(err => {  
+        }).catch(err => {
 
         })
 
@@ -37,10 +37,10 @@ const OverviewPage = props => {
         <>
             <div className='row'>
                 <div className='col-6'>
-                    <WeatherCard {...weather}/>
+                    <WeatherCard {...weather} />
                 </div>
                 <div className='col-6'>
-                    <GoogleMapCard {...{lat: 13.8119942,lng: 100.5626938,}}/>
+                    <GoogleMapCard {...{ lat: 13.8119942, lng: 100.5626938, }} />
                 </div>
             </div>
             <Card className='p-3 mt-3'>
@@ -124,7 +124,7 @@ const GoogleMapCard = props => {
                 options={mapOptions}
                 zoom={13}
                 onClick={(e) => handleClick(e)}
-                yesIWantToUseGoogleMapApiInternals={true} 
+                yesIWantToUseGoogleMapApiInternals={true}
             >
                 <Marker
                     lat={props.lat}
@@ -141,10 +141,10 @@ const GoogleMapCard = props => {
 const Marker = (props) => {
     const { color, name, id } = props
     return (
-      <div className='marker'
-        style={{ backgroundColor: color, cursor: 'pointer'}}
-        title={name}
-      />
+        <div className='marker'
+            style={{ backgroundColor: color, cursor: 'pointer' }}
+            title={name}
+        />
     )
 }
 
