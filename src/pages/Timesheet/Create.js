@@ -41,7 +41,7 @@ const CreateTimeSheetPage = props => {
 
     useEffect(() => {
         client.get(usersURL).then(res => {
-            setUsers(res.data.result.map(user => ({ ...user, value: user.id, label: `${user.full_name} (${user.first_name_th} ${user.last_name_th})` })))
+            setUsers(res.data.result.map(user => ({ ...user, value: user.id, label: `${user.full_name === '- -' ? `${user.first_name_th} ${user.last_name_th}` : user.full_name} (${user.first_name_th} ${user.last_name_th})` })))
         })
         client.get(jobsURL).then(res => {
             setJobs(res.data.result.map(value => ({ ...value, value: value.id, label: `${value.code}-${value.name}` })))

@@ -264,7 +264,7 @@ const SelectField = props => {
                     <div className='avatar dropdown-toggle btn btn-secondary'>
                         <span className='text-uppercase'>{`${data.last_name[0]}${data.first_name[0]}`}</span>
                     </div>
-                    <div className='m-3'>{data.full_name}</div>
+                    <div className='m-3'>{`${data.full_name === '- -' ? `${data.first_name_th} ${data.last_name_th}` : data.full_name} (${data.first_name_th} ${data.last_name_th})`}</div>
                     <div className='m-3'>{data.position}</div>
                     <div onClick={removeData} className='m-3'><XSquareFill /></div>
                 </div>
