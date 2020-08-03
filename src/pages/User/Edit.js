@@ -48,20 +48,24 @@ const EditUserPage = props => {
     }, [])
 
     const submitForm = data => {
-        /* client.post(usersURL, data)
+        client.put(usersDetailURL.replace(':id', id), data)
             .then(res => {
-                Swal.fire('Created !', 'Success .', 'success')
+                Swal.fire('Edit !', 'Success .', 'success')
                     .then(result => history.push('/users'))
             })
             .catch(error => {
                 setErrors(error.response.data)
-            }) */
+            })
     }
 
     return (
         <>
             {!loading &&
-                <UserForm submitForm={submitForm} mode='Edit' errors={errors} defaultValues={data}
+                <UserForm
+                    submitForm={submitForm}
+                    mode='Edit'
+                    errors={errors}
+                    defaultValues={data}
                     groups={groups}
                     companys={companys} />
             }

@@ -1,10 +1,13 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import InputField from 'components/forms/InputField'
-import { Button } from 'reactstrap'
+import { Button, FormGroup, Label, InputGroup, Input, InputGroupAddon } from 'reactstrap'
 import CheckboxField from 'components/forms/CheckboxField'
+import { Eye, EyeSlash } from 'react-bootstrap-icons'
 
 const FormSignIn = ({ submitLogIn }) => {
+    const [isShowPassword, setIsShowPassword] = useState(false)
+
     const { register, handleSubmit, setValue, errors } = useForm()
 
     useEffect(() => {
@@ -21,7 +24,16 @@ const FormSignIn = ({ submitLogIn }) => {
                 />
             </div>
             <div className='col-12'>
-                <InputField className='' type='password' label='password' name='password' error={errors['password']} register={register({ required: 'Required', })} />
+                <FormGroup >
+                    <Label htmlFor={`password-password`}>password</Label>
+                    <InputGroup>
+                        <Input type={isShowPassword ? 'text' : 'password'} id={`password-password`} name='password' invalid={errors.password && true} innerRef={register({ required: 'Required', })} />
+                        <InputGroupAddon addonType='append'>
+                            <Button onClick={() => setIsShowPassword(state => !state)} color='secondary'>{isShowPassword ? <EyeSlash /> : <Eye />}</Button>
+                        </InputGroupAddon>
+                    </InputGroup>
+                    {errors.password && <FormFeedback>{errors.password.message}</FormFeedback>}
+                </FormGroup>
             </div>
             {/* <div className='col-6'> */}
             <CheckboxField className='ml-3' text='Remember Me' />

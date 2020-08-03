@@ -11,7 +11,7 @@ import Swal from 'sweetalert2'
 
 const submitLogIn = dispatch => {
     return (data) => axios.post(` ${process.env.HOST}/api/o/token/`, qs.stringify({
-            'username': data.email,
+            'username': data.email.toLowerCase(),
             'password': data.password,
             'grant_type': 'password',
             'client_id': process.env.client_id,
